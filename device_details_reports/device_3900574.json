@@ -1,0 +1,1217 @@
+{
+  "device_id": 3900574,
+  "client": "Kelltic Cider Company",
+  "chassis_type": "3",
+  "ip_address": "10.220.215.205",
+  "mac_addresses": [
+    "00:50:56:87:2f:a7"
+  ],
+  "user": "nable",
+  "manufacturer": "Apple",
+  "model": "VMware7,1",
+  "operating_system": "macOS 15.6.1 build 24G90",
+  "role": 102,
+  "ram_bytes": 4294967296,
+  "scan_time": "2026-05-19 06:00:00",
+  "hardware_items_count": 142,
+  "software_items_count": 6,
+  "hardware": [
+    {
+      "hardware_id": 121511426,
+      "details": "AdapterType=AppleVMXNETController\r\nMACAddress=00:50:56:87:2f:a7\r\nIP=10.220.215.205/24",
+      "type": "1",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Boot ROM",
+      "hardware_id": 121511563,
+      "manufacturer": "Apple Inc.",
+      "details": "Version=VMW71.00V.18227214.B64.2106252220",
+      "type": "2",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "SMC",
+      "hardware_id": 121511564,
+      "manufacturer": "Apple Inc.",
+      "details": "Version=2.8f0",
+      "type": "2",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Pro Keyboard [Mitsumi, A1048/US layout]",
+      "hardware_id": 121511429,
+      "manufacturer": "VMware",
+      "type": "5",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Virtual Mouse",
+      "hardware_id": 121511430,
+      "manufacturer": "VMware",
+      "type": "6",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Default Monitor",
+      "hardware_id": 121511428,
+      "manufacturer": "(Standard monitor types)",
+      "type": "7",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "display0",
+      "hardware_id": 121511427,
+      "details": "CurrentHorizontalResolution=1890\r\nCurrentVerticalResolution=846\r\nCurrentNumberOfColors=4294967296",
+      "type": "8",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "VMware Virtual SATA Hard Drive",
+      "hardware_id": 121511565,
+      "details": "InterfaceType=PCI\r\nPartitions=1\r\nSize=64424509440",
+      "type": "9",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "VMware Virtual SATA Hard Drive",
+      "hardware_id": 121511566,
+      "details": "InterfaceType=PCI\r\nPartitions=6\r\nSize=64080535552",
+      "type": "9",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511499,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511500,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511501,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511502,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511503,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511504,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511505,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511506,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511507,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511508,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511509,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511510,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511511,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511512,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511513,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511514,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511515,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511516,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511517,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511518,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511519,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511520,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511521,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511522,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511523,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511524,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511525,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511526,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511527,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511528,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511529,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511530,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511531,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511532,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511533,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511534,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511535,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511536,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511537,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511538,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511539,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511540,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511541,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511542,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511543,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511544,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511545,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511546,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511547,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511548,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511549,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511550,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511551,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511552,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511553,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511554,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511555,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511556,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511557,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511558,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511559,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511560,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511561,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511562,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511435,
+      "details": "Capacity=4294967296\r\nSerialNumber=00000001",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511436,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511437,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511438,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511439,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511440,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511441,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511442,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511443,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511444,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511445,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511446,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511447,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511448,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511449,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511450,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511451,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511452,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511453,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511454,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511455,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511456,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511457,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511458,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511459,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511460,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511461,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511462,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511463,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511464,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511465,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511466,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511467,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511468,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511469,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511470,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511471,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511472,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511473,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511474,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511475,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511476,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511477,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511478,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511479,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511480,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511481,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511482,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511483,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511484,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511485,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511486,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511487,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511488,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511489,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511490,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511491,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511492,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511493,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511494,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511495,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511496,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511497,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121511498,
+      "details": "Capacity=0\r\nSerialNumber=empty",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache memory",
+      "hardware_id": 121511433,
+      "details": "Availability=3\r\nInstalledSize=32\r\nLevel=1\r\nLocation=0",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache memory",
+      "hardware_id": 121511434,
+      "details": "Availability=3\r\nInstalledSize=1024\r\nLevel=2\r\nLocation=0",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Xeon(R) W-3275M CPU @ 2.50GHz",
+      "hardware_id": 121511431,
+      "manufacturer": "GenuineIntel",
+      "details": "MaxClockSpeed=2267\r\nL2CacheSize=1024",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Xeon(R) W-3275M CPU @ 2.50GHz",
+      "hardware_id": 121511432,
+      "manufacturer": "GenuineIntel",
+      "details": "MaxClockSpeed=2267\r\nL2CacheSize=1024",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "NECVMWar VMware SATA CD01",
+      "hardware_id": 121511567,
+      "manufacturer": "(Standard CD-ROM drives)",
+      "type": "15",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    }
+  ],
+  "software": [
+    {
+      "name": "Advanced Monitoring Agent",
+      "software_id": 697522382,
+      "version": "3.10.1",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "com.apple.ctcategories",
+      "software_id": 697728385,
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Google Chrome",
+      "software_id": 697728382,
+      "version": "148.0.7778.168",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "group.is.workflow",
+      "software_id": 697522383,
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "MSP Anywhere Agent TakeControl",
+      "software_id": 697728383,
+      "version": "6.00.72",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "MSPA_Installer",
+      "software_id": 697728384,
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    }
+  ]
+}

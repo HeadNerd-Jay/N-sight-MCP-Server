@@ -180,3 +180,10 @@ This document outlines the testing use cases, target tool parameters, and exampl
     *   *"Show me a complete unified asset report for device 1806704."*
     *   *"Retrieve the chassis, MAC, RAM, and serial number specifications for device ID 3177206."*
     *   *"Print the detailed hardware and software profile for device ID 1806851."*
+
+### `list_all_devices` (Cross-Client Discovery Script)
+*   **Purpose**: A script that runs an automated discovery loop across all clients and sites, compiling a master inventory of every workstation and server in the N-sight account.
+*   **Example Prompts**:
+    *   *"List all devices across all clients and sites."*
+    *   *"Show me a complete inventory of every machine in N-sight."*
+    *   *"Retrieve a list of all servers and workstations configured on the server."*

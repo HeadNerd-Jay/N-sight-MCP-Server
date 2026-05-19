@@ -1,0 +1,347 @@
+{
+  "device_id": 3901280,
+  "client": "Kelltic Cider Company",
+  "chassis_type": "1",
+  "ip_address": "10.120.209.4",
+  "mac_addresses": [
+    "00:50:56:87:BC:9D"
+  ],
+  "user": "PE-9820\\nable",
+  "manufacturer": "VMware, Inc.",
+  "model": "VMware20,1",
+  "operating_system": "Microsoft Windows 11 Pro",
+  "serial_number": "00331-10000-00001-AA827",
+  "product_key": "%-&ngajbinjmmeeeedhbffealbgjoidkjgmondapficidifflhljbhbieemekmepmlk&-%",
+  "role": 0,
+  "service_pack": "0",
+  "ram_bytes": 4294967296,
+  "scan_time": "2026-05-19 04:44:00",
+  "hardware_items_count": 17,
+  "software_items_count": 20,
+  "hardware": [
+    {
+      "name": "vmxnet3 Ethernet Adapter",
+      "hardware_id": 121534610,
+      "manufacturer": "Broadcom Inc.",
+      "details": "AdapterType=Ethernet 802.3\r\nMACAddress=00:50:56:87:BC:9D",
+      "type": "1",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "VMW201.00V.24504846.B64.2501180339",
+      "hardware_id": 121534612,
+      "manufacturer": "VMware, Inc.",
+      "details": "SMBIOSBIOSVersion=VMW201.00V.24504846.B64.2501180339\r\nVersion=INTEL  - 6040000",
+      "type": "2",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "440BX Desktop Reference Platform",
+      "hardware_id": 121534613,
+      "manufacturer": "Intel Corporation",
+      "details": "SerialNumber=None",
+      "type": "4",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Enhanced (101- or 102-key)",
+      "hardware_id": 121534614,
+      "details": "Layout=00000409\r\nNumberOfFunctionKeys=12",
+      "type": "5",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "VMware Pointing Device",
+      "hardware_id": 121534615,
+      "manufacturer": "Broadcom Inc.",
+      "details": "DeviceInterface=1\r\nNumberOfButtons=0",
+      "type": "6",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Generic Non-PnP Monitor",
+      "hardware_id": 121534616,
+      "manufacturer": "(Standard monitor types)",
+      "type": "7",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "VMware SVGA 3D",
+      "hardware_id": 121534617,
+      "details": "CurrentHorizontalResolution=1280\r\nCurrentNumberOfColors=4294967296\r\nCurrentRefreshRate=1\r\nCurrentVerticalResolution=800\r\nDriverVersion=9.17.11.1",
+      "type": "8",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "VMware Virtual disk SCSI Disk Device",
+      "hardware_id": 121534618,
+      "manufacturer": "(Standard disk drives)",
+      "details": "InterfaceType=SCSI\r\nPartitions=4\r\nSize=75154383360",
+      "type": "9",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 121534619,
+      "details": "Capacity=4294967296\r\nSerialNumber=00000001",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache Memory",
+      "hardware_id": 121534620,
+      "details": "Availability=3\r\nInstalledSize=64\r\nLevel=3\r\nLocation=0",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache Memory",
+      "hardware_id": 121534621,
+      "details": "Availability=3\r\nInstalledSize=1024\r\nLevel=4\r\nLocation=1",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache Memory",
+      "hardware_id": 121534622,
+      "details": "Availability=3\r\nInstalledSize=36608\r\nLevel=5\r\nLocation=1",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache Memory",
+      "hardware_id": 121534623,
+      "details": "Availability=3\r\nInstalledSize=64\r\nLevel=3\r\nLocation=0",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache Memory",
+      "hardware_id": 121534624,
+      "details": "Availability=3\r\nInstalledSize=1024\r\nLevel=4\r\nLocation=1",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache Memory",
+      "hardware_id": 121534625,
+      "details": "Availability=3\r\nInstalledSize=36608\r\nLevel=5\r\nLocation=1",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Xeon(R) Gold 6252 CPU @ 2.10GHz",
+      "hardware_id": 121534626,
+      "manufacturer": "GenuineIntel",
+      "details": "L2CacheSize=1024\r\nMaxClockSpeed=2095",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Xeon(R) Gold 6252 CPU @ 2.10GHz",
+      "hardware_id": 121534627,
+      "manufacturer": "GenuineIntel",
+      "details": "L2CacheSize=1024\r\nMaxClockSpeed=2095",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    }
+  ],
+  "software": [
+    {
+      "name": "Security Update for Windows (KB5083769)",
+      "software_id": 697733061,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Security Update for Windows (KB5088467)",
+      "software_id": 697733062,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5054156)",
+      "software_id": 697733063,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5071142)",
+      "software_id": 697733064,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5078674)",
+      "software_id": 697733065,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5082417)",
+      "software_id": 697733066,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Advanced Monitoring Agent",
+      "software_id": 697733044,
+      "install_date": "2026-05-19 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Edge",
+      "software_id": 697733045,
+      "version": "148.0.3967.70",
+      "install_date": "2026-05-17 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Edge WebView2 Runtime",
+      "software_id": 697733046,
+      "version": "148.0.3967.70",
+      "install_date": "2026-05-16 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.40.33816",
+      "software_id": 697733048,
+      "version": "14.40.33816.0",
+      "install_date": "2026-05-12 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.42.34438",
+      "software_id": 697733049,
+      "version": "14.42.34438.0",
+      "install_date": "2026-05-19 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2022 X64 Additional Runtime - 14.40.33816",
+      "software_id": 697733050,
+      "version": "14.40.33816",
+      "install_date": "2026-04-17 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.40.33816",
+      "software_id": 697733052,
+      "version": "14.40.33816",
+      "install_date": "2026-04-17 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2022 X86 Additional Runtime - 14.42.34438",
+      "software_id": 697733053,
+      "version": "14.42.34438",
+      "install_date": "2026-05-19 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.42.34438",
+      "software_id": 697733054,
+      "version": "14.42.34438",
+      "install_date": "2026-05-19 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Windows 11 Pro",
+      "software_id": 697733055,
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "ScriptRunner Bootstrap Installer",
+      "software_id": 697733057,
+      "version": "2.98.2.2",
+      "install_date": "2026-05-19 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "ScriptRunner.Installer 2.98.2.2",
+      "software_id": 697733058,
+      "version": "2.98.2.2",
+      "install_date": "2026-05-19 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "VMware Tools",
+      "software_id": 697733059,
+      "version": "13.0.5.0",
+      "install_date": "2026-04-17 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Windows Internet Explorer",
+      "software_id": 697733060,
+      "version": "11.1882.26100.0",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    }
+  ]
+}

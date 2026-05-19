@@ -1,0 +1,215 @@
+[
+  {
+    "device_id": 1806704,
+    "name": "CSP-0009",
+    "client": "Company 1",
+    "type": "server",
+    "manufacturer": "VMware, Inc.",
+    "model": "VMware Virtual Platform",
+    "operating_system": "Microsoft Windows Server 2019 Standard",
+    "serial_number": "00429-70000-00000-AA436",
+    "ip_address": "10.120.34.28",
+    "mac_addresses": [
+      "00:50:56:87:FD:71",
+      "00:50:56:87:FD:71"
+    ],
+    "hardware_items_count": 12,
+    "software_items_count": 77,
+    "custom_fields": null
+  },
+  {
+    "device_id": 3177206,
+    "name": "Joseph's MacBook Pro (3)",
+    "client": "Company 1",
+    "type": "workstation",
+    "manufacturer": "Apple",
+    "model": "MacBookPro16,1",
+    "operating_system": "macOS 15.3 build 24D60",
+    "serial_number": "N/A",
+    "ip_address": "192.168.0.103",
+    "mac_addresses": [
+      "ac:de:48:00:11:22"
+    ],
+    "hardware_items_count": 21,
+    "software_items_count": 8,
+    "custom_fields": null
+  },
+  {
+    "device_id": 1806851,
+    "name": "CSP-0012",
+    "client": "Company 1",
+    "type": "workstation",
+    "manufacturer": "VMware, Inc.",
+    "model": "VMware7,1",
+    "operating_system": "Microsoft Windows 10 Pro",
+    "serial_number": "00331-10000-00001-AA259",
+    "ip_address": "10.120.34.31",
+    "mac_addresses": [
+      "00:50:56:87:F9:6D",
+      "00:50:56:87:F9:6D"
+    ],
+    "hardware_items_count": 19,
+    "software_items_count": 82,
+    "custom_fields": null
+  },
+  {
+    "device_id": 1806869,
+    "name": "CSP-0013",
+    "client": "Company 1",
+    "type": "workstation",
+    "manufacturer": "VMware, Inc.",
+    "model": "VMware20,1",
+    "operating_system": "Microsoft Windows 10 Pro",
+    "serial_number": "00331-10000-00001-AA406",
+    "ip_address": "10.120.34.32",
+    "mac_addresses": [
+      "00:50:56:87:C3:BF",
+      "00:50:56:87:C3:BF"
+    ],
+    "hardware_items_count": 19,
+    "software_items_count": 41,
+    "custom_fields": null
+  },
+  {
+    "device_id": 1806758,
+    "name": "CSP-0010",
+    "client": "Company 2",
+    "type": "server",
+    "manufacturer": "VMware, Inc.",
+    "model": "VMware Virtual Platform",
+    "operating_system": "Microsoft Windows Server 2019 Standard",
+    "serial_number": "00429-70000-00000-AA972",
+    "ip_address": "10.120.34.29",
+    "mac_addresses": [
+      "00:50:56:87:58:50",
+      "00:50:56:87:58:50"
+    ],
+    "hardware_items_count": 12,
+    "software_items_count": 82,
+    "custom_fields": null
+  },
+  {
+    "device_id": 1806911,
+    "name": "CSP-0015",
+    "client": "Company 2",
+    "type": "workstation",
+    "manufacturer": "VMware, Inc.",
+    "model": "VMware20,1",
+    "operating_system": "Microsoft Windows 10 Pro",
+    "serial_number": "00331-10000-00001-AA659",
+    "ip_address": "10.120.34.34",
+    "mac_addresses": [
+      "00:50:56:87:39:30",
+      "00:50:56:87:39:30"
+    ],
+    "hardware_items_count": 19,
+    "software_items_count": 76,
+    "custom_fields": null
+  },
+  {
+    "device_id": 1806830,
+    "name": "CSP-0011",
+    "client": "Company 3",
+    "type": "server",
+    "manufacturer": "VMware, Inc.",
+    "model": "VMware Virtual Platform",
+    "operating_system": "Microsoft Windows Server 2019 Standard",
+    "serial_number": "00429-70000-00000-AA922",
+    "ip_address": "10.120.34.30",
+    "mac_addresses": [
+      "00:50:56:87:97:C5",
+      "00:50:56:87:97:C5"
+    ],
+    "hardware_items_count": 12,
+    "software_items_count": 77,
+    "custom_fields": null
+  },
+  {
+    "device_id": 1806980,
+    "name": "CSP-0018",
+    "client": "Company 3",
+    "type": "workstation",
+    "manufacturer": "VMware, Inc.",
+    "model": "VMware20,1",
+    "operating_system": "Microsoft Windows 10 Pro",
+    "serial_number": "00331-10000-00001-AA872",
+    "ip_address": "10.120.34.37",
+    "mac_addresses": [
+      "00:50:56:87:A0:16",
+      "00:50:56:87:A0:16"
+    ],
+    "hardware_items_count": 19,
+    "software_items_count": 76,
+    "custom_fields": null
+  },
+  {
+    "device_id": 1807013,
+    "name": "CSP-0019",
+    "client": "Company 3",
+    "type": "workstation",
+    "manufacturer": "VMware, Inc.",
+    "model": "VMware20,1",
+    "operating_system": "Microsoft Windows 10 Pro",
+    "serial_number": "00331-10000-00001-AA915",
+    "ip_address": "10.120.34.38",
+    "mac_addresses": [
+      "00:50:56:87:11:20",
+      "00:50:56:87:11:20"
+    ],
+    "hardware_items_count": 19,
+    "software_items_count": 77,
+    "custom_fields": null
+  },
+  {
+    "device_id": 1807037,
+    "name": "CSP-0020",
+    "client": "Company 3",
+    "type": "workstation",
+    "manufacturer": "VMware, Inc.",
+    "model": "VMware20,1",
+    "operating_system": "Microsoft Windows 10 Pro",
+    "serial_number": "00331-10000-00001-AA638",
+    "ip_address": "10.120.34.39",
+    "mac_addresses": [
+      "00:50:56:87:DF:12",
+      "00:50:56:87:DF:12"
+    ],
+    "hardware_items_count": 19,
+    "software_items_count": 43,
+    "custom_fields": null
+  },
+  {
+    "device_id": 3900574,
+    "name": "AM4-MacOSx-Sequoia",
+    "client": "Kelltic Cider Company",
+    "type": "workstation",
+    "manufacturer": "Apple",
+    "model": "VMware7,1",
+    "operating_system": "macOS 15.6.1 build 24G90",
+    "serial_number": "N/A",
+    "ip_address": "10.220.215.205",
+    "mac_addresses": [
+      "00:50:56:87:2f:a7"
+    ],
+    "hardware_items_count": 142,
+    "software_items_count": 6,
+    "custom_fields": null
+  },
+  {
+    "device_id": 3901280,
+    "name": "PE-9820",
+    "client": "Kelltic Cider Company",
+    "type": "workstation",
+    "manufacturer": "VMware, Inc.",
+    "model": "VMware20,1",
+    "operating_system": "Microsoft Windows 11 Pro",
+    "serial_number": "00331-10000-00001-AA827",
+    "ip_address": "10.120.209.4",
+    "mac_addresses": [
+      "00:50:56:87:BC:9D"
+    ],
+    "hardware_items_count": 17,
+    "software_items_count": 20,
+    "custom_fields": null
+  }
+]
