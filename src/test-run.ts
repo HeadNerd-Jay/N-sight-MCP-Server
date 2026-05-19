@@ -6,6 +6,8 @@ import { listDevices } from "./tools/readonly/list-devices.js";
 import { getDeviceAssets } from "./tools/readonly/get-device-assets.js";
 import { listChecks } from "./tools/readonly/list-checks.js";
 import { listPatches } from "./tools/readonly/list-patches.js";
+import { listClientLicenseCount } from "./tools/readonly/list-client-license-count.js";
+import { listDeviceAssetDetails } from "./tools/readonly/list-device-asset-details.js";
 
 dotenv.config();
 
@@ -34,6 +36,14 @@ async function runTests() {
     }
 
     const clientId = firstClient.client_id;
+    console.log(`\n=== Testing: listClientLicenseCount for Client ID: ${clientId} ===`);
+    try {
+      const licensesJson = await listClientLicenseCount(nsightClient, { clientid: clientId });
+      console.log(JSON.stringify(JSON.parse(licensesJson), null, 2));
+    } catch (e: any) {
+      console.log(`Licenses check failed: ${e.message}`);
+    }
+
     console.log(`\n=== Testing: listSites for Client ID: ${clientId} ===`);
     const sitesJson = await listSites(nsightClient, { clientid: clientId });
     const sitesData = JSON.parse(sitesJson);
@@ -80,6 +90,18 @@ async function runTests() {
       console.log(JSON.stringify(JSON.parse(patchesJson), null, 2));
     } catch (e: any) {
       console.log(`Patches failed or not configured for this device: ${e.message}`);
+    }
+
+    console.log(`\n=== Testing: listDeviceAssetDetails for Device ID: ${deviceId} ===`);
+    try {
+      const assetDetailsJson = await listDeviceAssetDetails(nsightClient, { deviceid: deviceId });
+      const data = JSON.parse(assetDetailsJson);
+      console.log(`Found ${data.hardware_items_count} hardware items and ${data.software_items_count} software items.`);
+      if (data.hardware) data.hardware = data.hardware.slice(0, 2);
+      if (data.software) data.software = data.software.slice(0, 2);
+      console.log(JSON.stringify(data, null, 2));
+    } catch (e: any) {
+      console.log(`Asset details check failed: ${e.message}`);
     }
 
   } catch (err: any) {
