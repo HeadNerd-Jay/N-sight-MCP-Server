@@ -1,6 +1,9 @@
 /**
  * N-sight API HTTP Client
  * API reference: https://developer.n-able.com/n-sight/docs/getting-started-with-the-n-sight-api
+ *
+ * Note: N-sight servers sit behind Cloudflare WAF which blocks requests
+ * without a recognised User-Agent. A browser-like UA is required.
  */
 
 import { parseStringPromise } from "xml2js";
@@ -18,6 +21,12 @@ export interface NsightRequestParams {
   [key: string]: string | number | undefined;
 }
 
+// Cloudflare WAF blocks requests without a recognised User-Agent.
+const REQUEST_HEADERS = {
+  "User-Agent": "Mozilla/5.0 (compatible; NsightMCPServer/0.1)",
+  "Accept": "application/xml",
+};
+
 export class NsightClient {
   private config: NsightClientConfig;
   private rateLimiter: RateLimiter;
@@ -30,7 +39,7 @@ export class NsightClient {
   async call(params: NsightRequestParams): Promise<Record<string, unknown>> {
     await this.rateLimiter.acquire();
     const url = this.buildUrl(params);
-    const response = await fetch(url);
+    const response = await fetch(url, { headers: REQUEST_HEADERS });
 
     if (!response.ok) {
       throw new Error(`N-sight API error: ${response.status} ${response.statusText}`);
@@ -39,8 +48,9 @@ export class NsightClient {
     const xml = await response.text();
     const parsed = await parseStringPromise(xml, { explicitArray: false, mergeAttrs: true });
 
-    if (parsed?.result?.["$"]?.status === "FAIL") {
-      throw new Error(`N-sight API failure: ${JSON.stringify(parsed.result)}`);
+    if (parsed?.result?.status === "FAIL" || parsed?.result?.["$"]?.status === "FAIL") {
+      const err = parsed?.result?.error;
+      throw new Error(`N-sight API failure: ${err?.message ?? JSON.stringify(parsed.result)}`);
     }
 
     return parsed?.result?.items ?? parsed?.result ?? parsed;
