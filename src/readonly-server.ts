@@ -40,6 +40,8 @@ import { listBackupSessionsTool, listBackupSessions } from "./tools/readonly/lis
 import { listBackupHistoryTool, listBackupHistory } from "./tools/readonly/list-backup-history.js";
 import { listDriveHistoryTool, listDriveHistory } from "./tools/readonly/list-drive-history.js";
 import { listPerformanceHistoryTool, listPerformanceHistory } from "./tools/readonly/list-performance-history.js";
+import { listClientLicenseCountTool, listClientLicenseCount } from "./tools/readonly/list-client-license-count.js";
+import { listDeviceAssetDetailsTool, listDeviceAssetDetails } from "./tools/readonly/list-device-asset-details.js";
 
 dotenv.config();
 
@@ -91,6 +93,8 @@ const tools = [
   listBackupHistoryTool,
   listDriveHistoryTool,
   listPerformanceHistoryTool,
+  listClientLicenseCountTool,
+  listDeviceAssetDetailsTool,
 ];
 
 // ---------------------------------------------------------------------------
@@ -205,6 +209,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       case "list_performance_history":
         text = await listPerformanceHistory(nsightClient, args as { deviceid: number });
+        break;
+
+      case "list_client_license_count":
+        text = await listClientLicenseCount(nsightClient, args as { clientid: number });
+        break;
+
+      case "list_device_asset_details":
+        text = await listDeviceAssetDetails(nsightClient, args as { deviceid: number });
         break;
 
       default:

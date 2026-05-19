@@ -162,3 +162,21 @@ This document outlines the testing use cases, target tool parameters, and exampl
     *   *"List the 90-day daily backup history for device ID 1806704."*
     *   *"Show daily backup check statuses for workstation 3177206."*
     *   *"Get backup status history logs for device 1806851."*
+
+---
+
+## 8. Client Licenses & Unified Device Asset Details
+
+### `list_client_license_count`
+*   **Purpose**: Lists software license counts, group IDs, and installation status for a specific client.
+*   **Example Prompts**:
+    *   *"List all software license allocations for client ID 129052."*
+    *   *"Show the software license count and usage stats for client 286535."*
+    *   *"How many licenses are allocated and installed for client ID 129055?"*
+
+### `list_device_asset_details`
+*   **Purpose**: Lists complete device specifications, RAM, MAC address list, chassis type, hardware profile, installed software profile, and custom asset fields.
+*   **Example Prompts**:
+    *   *"Show me a complete unified asset report for device 1806704."*
+    *   *"Retrieve the chassis, MAC, RAM, and serial number specifications for device ID 3177206."*
+    *   *"Print the detailed hardware and software profile for device ID 1806851."*
