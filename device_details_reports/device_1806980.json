@@ -1,0 +1,797 @@
+{
+  "device_id": 1806980,
+  "client": "Company 3",
+  "chassis_type": "1",
+  "ip_address": "10.120.34.37",
+  "mac_addresses": [
+    "00:50:56:87:A0:16",
+    "00:50:56:87:A0:16"
+  ],
+  "user": "User",
+  "manufacturer": "VMware, Inc.",
+  "model": "VMware20,1",
+  "operating_system": "Microsoft Windows 10 Pro",
+  "serial_number": "00331-10000-00001-AA872",
+  "product_key": "%-&ngajbinjmmeeeedhbffealbgjoidkjgmondapficidifflhljbhbieemekmepmlk&-%",
+  "role": 0,
+  "service_pack": "0",
+  "ram_bytes": 4294967296,
+  "scan_time": "2026-05-19 11:42:00",
+  "hardware_items_count": 19,
+  "software_items_count": 76,
+  "hardware": [
+    {
+      "name": "Intel(R) 82574L Gigabit Network Connection",
+      "hardware_id": 55292816,
+      "manufacturer": "Intel Corporation",
+      "details": "AdapterType=Ethernet 802.3\r\nMACAddress=00:50:56:87:A0:16",
+      "type": "1",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "VMW201.00V.24504846.B32.2501180339",
+      "hardware_id": 55292819,
+      "manufacturer": "VMware, Inc.",
+      "details": "SMBIOSBIOSVersion=VMW201.00V.24504846.B32.2501180339\r\nVersion=INTEL  - 6040000",
+      "type": "2",
+      "status": "OK",
+      "deleted": false,
+      "modified": true
+    },
+    {
+      "name": "440BX Desktop Reference Platform",
+      "hardware_id": 55292822,
+      "manufacturer": "Intel Corporation",
+      "details": "SerialNumber=None",
+      "type": "4",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Enhanced (101- or 102-key)",
+      "hardware_id": 55292825,
+      "details": "Layout=00000409\r\nNumberOfFunctionKeys=12",
+      "type": "5",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "USB Input Device",
+      "hardware_id": 121179989,
+      "manufacturer": "(Standard system devices)",
+      "details": "DeviceInterface=162\r\nNumberOfButtons=0",
+      "type": "6",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "USB Input Device",
+      "hardware_id": 121179990,
+      "manufacturer": "(Standard system devices)",
+      "details": "DeviceInterface=162\r\nNumberOfButtons=0",
+      "type": "6",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "VMware Pointing Device",
+      "hardware_id": 55292834,
+      "manufacturer": "VMware, Inc.",
+      "details": "DeviceInterface=1\r\nNumberOfButtons=0",
+      "type": "6",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Generic Non-PnP Monitor",
+      "hardware_id": 55292837,
+      "manufacturer": "(Standard monitor types)",
+      "type": "7",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "VMware SVGA 3D",
+      "hardware_id": 55292840,
+      "details": "CurrentHorizontalResolution=2132\r\nCurrentNumberOfColors=4294967296\r\nCurrentRefreshRate=1\r\nCurrentVerticalResolution=932\r\nDriverVersion=9.17.7.4",
+      "type": "8",
+      "status": "OK",
+      "deleted": false,
+      "modified": true
+    },
+    {
+      "name": "VMware Virtual disk SCSI Disk Device",
+      "hardware_id": 55292843,
+      "manufacturer": "(Standard disk drives)",
+      "details": "InterfaceType=SCSI\r\nPartitions=2\r\nSize=73007585280",
+      "type": "9",
+      "status": "OK",
+      "deleted": false,
+      "modified": true
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 55292846,
+      "details": "Capacity=4294967296\r\nSerialNumber=00000001",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache Memory",
+      "hardware_id": 111927051,
+      "details": "Availability=3\r\nInstalledSize=64\r\nLevel=3\r\nLocation=0",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache Memory",
+      "hardware_id": 111927052,
+      "details": "Availability=3\r\nInstalledSize=1024\r\nLevel=4\r\nLocation=1",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache Memory",
+      "hardware_id": 111927053,
+      "details": "Availability=3\r\nInstalledSize=36608\r\nLevel=5\r\nLocation=1",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache Memory",
+      "hardware_id": 111927054,
+      "details": "Availability=3\r\nInstalledSize=64\r\nLevel=3\r\nLocation=0",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache Memory",
+      "hardware_id": 111927055,
+      "details": "Availability=3\r\nInstalledSize=1024\r\nLevel=4\r\nLocation=1",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache Memory",
+      "hardware_id": 111927056,
+      "details": "Availability=3\r\nInstalledSize=36608\r\nLevel=5\r\nLocation=1",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Xeon(R) Gold 6252 CPU @ 2.10GHz",
+      "hardware_id": 55292849,
+      "manufacturer": "GenuineIntel",
+      "details": "L2CacheSize=1024\r\nMaxClockSpeed=2095",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": true
+    },
+    {
+      "name": "NECVMWar VMware SATA CD00",
+      "hardware_id": 55292852,
+      "manufacturer": "(Standard CD-ROM drives)",
+      "type": "15",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    }
+  ],
+  "software": [
+    {
+      "name": "Security Update for Windows (KB5005699)",
+      "software_id": 412140704,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Security Update for Windows (KB5011352)",
+      "software_id": 456334876,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Security Update for Windows (KB5012170)",
+      "software_id": 516142069,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Security Update for Windows (KB5014032)",
+      "software_id": 485221960,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Security Update for Windows (KB5037018)",
+      "software_id": 622365124,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Security Update for Windows (KB5058526)",
+      "software_id": 663657302,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Security Update for Windows (KB5063706)",
+      "software_id": 667287628,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Security Update for Windows (KB5066790)",
+      "software_id": 676736482,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Security Update for Windows (KB5071959)",
+      "software_id": 679847831,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Security Update for Windows (KB5071982)",
+      "software_id": 679847832,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Security Update for Windows (KB5072653)",
+      "software_id": 681436096,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5000736)",
+      "software_id": 388677272,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5001716)",
+      "software_id": 655026692,
+      "version": "8.94.0.0",
+      "install_date": "2025-07-03 00:00:00",
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5006753)",
+      "software_id": 429690149,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5007273)",
+      "software_id": 439439465,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5011048)",
+      "software_id": 593881932,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5011651)",
+      "software_id": 475991458,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5014035)",
+      "software_id": 498215422,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5014671)",
+      "software_id": 506899444,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5015684)",
+      "software_id": 585045431,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5015895)",
+      "software_id": 516142084,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5016705)",
+      "software_id": 530519353,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5018506)",
+      "software_id": 553319770,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5020372)",
+      "software_id": 564183172,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5022924)",
+      "software_id": 585804725,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5023794)",
+      "software_id": 585804726,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5025315)",
+      "software_id": 587055132,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5026879)",
+      "software_id": 591899895,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5027122)",
+      "software_id": 591899896,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5028318)",
+      "software_id": 594917868,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5028380)",
+      "software_id": 597836179,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5029709)",
+      "software_id": 601241739,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5030506)",
+      "software_id": 602428659,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5031539)",
+      "software_id": 603684730,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5032907)",
+      "software_id": 610809386,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5034224)",
+      "software_id": 616505379,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5036447)",
+      "software_id": 619455343,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5037240)",
+      "software_id": 624899580,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5039336)",
+      "software_id": 635353781,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5046823)",
+      "software_id": 644128576,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5059504)",
+      "software_id": 664303873,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5063261)",
+      "software_id": 670672862,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5063979)",
+      "software_id": 673326359,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Update for Windows (KB5066130)",
+      "software_id": 676736484,
+      "type": "Update",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Adlumin",
+      "software_id": 674741687,
+      "version": "10.30.15",
+      "install_date": "2025-11-05 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Advanced Monitoring Agent",
+      "software_id": 388677218,
+      "install_date": "2025-11-06 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Advanced Monitoring Agent Network Management",
+      "software_id": 388845728,
+      "version": "43.0.1.2",
+      "install_date": "2023-04-13 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Advanced Monitoring Agent Web Protection",
+      "software_id": 388845731,
+      "version": "5.36.3.3",
+      "install_date": "2025-02-04 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Backup Manager",
+      "software_id": 388845734,
+      "version": "26.4.0.26104",
+      "install_date": "2026-04-16 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Copilot",
+      "software_id": 693936485,
+      "version": "148.0.3967.70",
+      "install_date": "2026-05-18 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": true
+    },
+    {
+      "name": "File Cache Service Agent",
+      "software_id": 388845737,
+      "version": "2.13.14.5122",
+      "install_date": "2026-04-24 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Google Chrome",
+      "software_id": 388677221,
+      "version": "148.0.7778.168",
+      "install_date": "2024-06-12 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Edge",
+      "software_id": 388677224,
+      "version": "148.0.3967.70",
+      "install_date": "2026-05-16 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Edge WebView2 Runtime",
+      "software_id": 515097559,
+      "version": "148.0.3967.70",
+      "install_date": "2026-05-16 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft OneDrive",
+      "software_id": 388677230,
+      "version": "26.074.0420.0001",
+      "install_date": "2026-05-18 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": true
+    },
+    {
+      "name": "Microsoft Silverlight",
+      "software_id": 389050400,
+      "version": "5.1.50918.0",
+      "install_date": "2021-07-03 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Update Health Tools",
+      "software_id": 388677233,
+      "version": "3.74.0.0",
+      "install_date": "2023-12-16 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2005 Redistributable",
+      "software_id": 388845740,
+      "version": "8.0.61001",
+      "install_date": "2021-07-01 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.6161",
+      "software_id": 388845743,
+      "version": "9.0.30729.6161",
+      "install_date": "2021-07-01 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2013 Redistributable (x86) - 12.0.40649",
+      "software_id": 388677236,
+      "version": "12.0.40649.5",
+      "install_date": "2021-10-27 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2013 x86 Additional Runtime - 12.0.40649",
+      "software_id": 388677239,
+      "version": "12.0.40649",
+      "install_date": "2021-07-01 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2013 x86 Minimum Runtime - 12.0.40649",
+      "software_id": 388677242,
+      "version": "12.0.40649",
+      "install_date": "2021-07-01 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.40.33816",
+      "software_id": 674397927,
+      "version": "14.40.33816.0",
+      "install_date": "2026-04-09 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2022 X86 Additional Runtime - 14.40.33816",
+      "software_id": 674397930,
+      "version": "14.40.33816",
+      "install_date": "2025-09-24 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.40.33816",
+      "software_id": 674397931,
+      "version": "14.40.33816",
+      "install_date": "2025-09-24 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Microsoft Windows 10 Pro",
+      "software_id": 388677254,
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "MSP Core Agent",
+      "software_id": 621563459,
+      "version": "1.0.80.0",
+      "install_date": "2024-04-09 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Patch Management Service Controller",
+      "software_id": 388845746,
+      "version": "2.13.14.5671",
+      "install_date": "2026-04-24 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Ransomware Simulator",
+      "software_id": 674741688,
+      "version": "1.0.2",
+      "install_date": "2025-09-29 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Rapid7 Insight Agent",
+      "software_id": 474181447,
+      "version": "3.1.1.1",
+      "install_date": "2022-04-11 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Request Handler Agent",
+      "software_id": 388845749,
+      "version": "2.13.14.5122",
+      "install_date": "2026-04-24 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "ScriptRunner Bootstrap Installer",
+      "software_id": 388677257,
+      "version": "2.98.2.2",
+      "install_date": "2025-11-07 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "ScriptRunner.Installer 2.98.2.2",
+      "software_id": 678792885,
+      "version": "2.98.2.2",
+      "install_date": "2025-11-06 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Sentinel Agent",
+      "software_id": 390931172,
+      "version": "22.3.612",
+      "install_date": "2023-07-06 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "VMware Tools",
+      "software_id": 388677263,
+      "version": "12.4.9.24964244",
+      "install_date": "2026-04-09 00:00:00",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Windows Internet Explorer",
+      "software_id": 388677266,
+      "version": "11.3636.19041.0",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    }
+  ]
+}

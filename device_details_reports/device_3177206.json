@@ -1,0 +1,275 @@
+{
+  "device_id": 3177206,
+  "client": "Company 1",
+  "chassis_type": "10",
+  "ip_address": "192.168.0.103",
+  "mac_addresses": [
+    "ac:de:48:00:11:22"
+  ],
+  "user": "josephferla",
+  "manufacturer": "Apple",
+  "model": "MacBookPro16,1",
+  "operating_system": "macOS 15.3 build 24D60",
+  "role": 102,
+  "ram_bytes": 17179869184,
+  "scan_time": "2026-05-13 07:02:00",
+  "hardware_items_count": 21,
+  "software_items_count": 8,
+  "hardware": [
+    {
+      "hardware_id": 97767643,
+      "details": "AdapterType=IOSkywalkLegacyEthernet\r\nMACAddress=a4:83:e7:c6:16:89\r\nIP=192.168.0.103/24",
+      "type": "1",
+      "deleted": false,
+      "modified": true
+    },
+    {
+      "name": "Boot ROM",
+      "hardware_id": 97767660,
+      "manufacturer": "Apple Inc.",
+      "details": "Version=2069.80.3.0.0 (iBridge: 22.16.13051.0.0,0)",
+      "type": "2",
+      "deleted": false,
+      "modified": true
+    },
+    {
+      "name": "SMC",
+      "hardware_id": 97767661,
+      "manufacturer": "Apple Inc.",
+      "details": "Version=",
+      "type": "2",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "hardware_id": 97767646,
+      "manufacturer": "Apple Inc.",
+      "type": "5",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Default Monitor",
+      "hardware_id": 97767645,
+      "manufacturer": "(Standard monitor types)",
+      "type": "7",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "AMD Radeon Pro 5500M",
+      "hardware_id": 97767644,
+      "details": "CurrentHorizontalResolution=1792\r\nCurrentVerticalResolution=1120\r\nCurrentRefreshRate=59\r\nCurrentNumberOfColors=4294967296",
+      "type": "8",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "APPLE SSD AP1024N",
+      "hardware_id": 97767662,
+      "details": "InterfaceType=PCI-Express\r\nPartitions=1\r\nSize=1000555581440",
+      "type": "9",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "APPLE SSD AP1024N",
+      "hardware_id": 97767663,
+      "details": "InterfaceType=PCI-Express\r\nPartitions=6\r\nSize=1000240963584",
+      "type": "9",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 97767658,
+      "details": "Capacity=8589934592\r\nSerialNumber=-",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Physical Memory",
+      "hardware_id": 97767659,
+      "details": "Capacity=8589934592\r\nSerialNumber=-",
+      "type": "11",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache memory",
+      "hardware_id": 97767655,
+      "details": "Availability=3\r\nInstalledSize=32\r\nLevel=1\r\nLocation=0",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache memory",
+      "hardware_id": 97767657,
+      "details": "Availability=3\r\nInstalledSize=16384\r\nLevel=3\r\nLocation=0",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Cache memory",
+      "hardware_id": 97767656,
+      "details": "Availability=3\r\nInstalledSize=256\r\nLevel=2\r\nLocation=0",
+      "type": "12",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+      "hardware_id": 97767647,
+      "manufacturer": "GenuineIntel",
+      "details": "MaxClockSpeed=2193\r\nL2CacheSize=256",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+      "hardware_id": 97767648,
+      "manufacturer": "GenuineIntel",
+      "details": "MaxClockSpeed=2193\r\nL2CacheSize=256",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+      "hardware_id": 97767649,
+      "manufacturer": "GenuineIntel",
+      "details": "MaxClockSpeed=2193\r\nL2CacheSize=256",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+      "hardware_id": 97767650,
+      "manufacturer": "GenuineIntel",
+      "details": "MaxClockSpeed=2193\r\nL2CacheSize=256",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+      "hardware_id": 97767651,
+      "manufacturer": "GenuineIntel",
+      "details": "MaxClockSpeed=2193\r\nL2CacheSize=256",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+      "hardware_id": 97767652,
+      "manufacturer": "GenuineIntel",
+      "details": "MaxClockSpeed=2193\r\nL2CacheSize=256",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+      "hardware_id": 97767653,
+      "manufacturer": "GenuineIntel",
+      "details": "MaxClockSpeed=2193\r\nL2CacheSize=256",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+      "hardware_id": 97767654,
+      "manufacturer": "GenuineIntel",
+      "details": "MaxClockSpeed=2193\r\nL2CacheSize=256",
+      "type": "13",
+      "status": "OK",
+      "deleted": false,
+      "modified": false
+    }
+  ],
+  "software": [
+    {
+      "name": "Advanced Monitoring Agent",
+      "software_id": 600525288,
+      "version": "3.10.0",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "Backup Manager",
+      "software_id": 600579778,
+      "version": "21.4.0.21161",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "com.apple.ctcategories",
+      "software_id": 600579782,
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "DuckDuckGo",
+      "software_id": 604094635,
+      "version": "1.167.0",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "group.is.workflow",
+      "software_id": 600579783,
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "MSP Anywhere Agent TakeControl",
+      "software_id": 600579781,
+      "version": "6.00.72",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "MSPA_Installer",
+      "software_id": 604094636,
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    },
+    {
+      "name": "SentinelOne Extensions",
+      "software_id": 604566432,
+      "version": "23.1.3",
+      "type": "All",
+      "deleted": false,
+      "modified": false
+    }
+  ]
+}
