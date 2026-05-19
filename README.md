@@ -1,75 +1,38 @@
-# nsight-mcp-server
+# N-sight AI Connect
 
-**N-sight AI Connect** — Official MCP (Model Context Protocol) server for N-able N-sight RMM.
+Official MCP (Model Context Protocol) server for N-able N-sight RMM.
 
-Enables AI assistants (Claude, Microsoft Copilot, and any MCP-compatible client) to interact natively with N-sight RMM on behalf of MSP technicians.
-
----
-
-## Two-Tier Architecture
-
-| Server | Description | Phase |
-|--------|-------------|-------|
-| **Read-Only** | Safe data access and reporting — all read tools, no state changes | Phase 1 |
-| **Production** | Full AI-driven operations including remediation actions | Phase 2 |
+Enables AI assistants (Claude, Microsoft Copilot, and any MCP-compatible client) to query and act on N-sight RMM on behalf of MSP technicians — without leaving their AI interface.
 
 ---
 
-## Features
+## Architecture
 
-### Read-Only Server
-- List and inspect clients, sites, servers, workstations, and agentless assets
-- Query failing checks, outages, and check output
-- Review patch compliance per device
-- Monitor AV threats, scans, and quarantine status
-- Check backup session history and selection sizes
-- Retrieve hardware/software asset inventory
-- View performance and drive space history
+Two servers, shared codebase:
 
-### Production Server *(Read-Only + all of the following)*
-- Clear failing checks and add technician notes
-- Approve, ignore, retry, and reprocess patches
-- Start, pause, resume, and cancel AV scans
-- Release or remove quarantined items
-- Force AV definition updates
-- Run pre-configured automated tasks
-- Add clients and sites
+| Server | What it does | Status |
+|---|---|---|
+| **Read-Only** | Safe data access — clients, devices, checks, patches, AV, backups | Phase 1 — In Progress |
+| **Production** | Everything in Read-Only + remediation actions | Phase 2 — Planned |
 
 ---
 
-## Getting Started
+## Quick Start
 
-### Prerequisites
-- Node.js 18+
-- N-sight account with API key ([generate here](https://developer.n-able.com/n-sight/docs/generate-an-api-key))
-- Your N-sight regional server URL ([determine here](https://developer.n-able.com/n-sight/docs/determine-server-for-api-query))
+**Prerequisites:** Node.js 18+, N-sight API key, your regional server URL
 
-### Configuration
-
-```powershell
-Copy-Item .env.example .env
-```
-
-Edit `.env` with your API key and server URL.
-
-### Run Read-Only Server
-
-```powershell
+```bash
+cp .env.example .env      # add your NSIGHT_API_KEY and NSIGHT_SERVER_URL
 npm install
-npm run start:readonly
+npm run dev:readonly      # development (no compile step)
+npm run start:readonly    # production (runs from dist/)
 ```
 
-### Run Production Server
-
-```powershell
-npm run start:production
-```
-
-> ⚠️ The Production server requires explicit opt-in and enforces a confirmation step before every write action.
+> See `.env.example` for all configuration options.
 
 ---
 
-## Claude Desktop Integration
+## Claude Desktop Setup
 
 Add to your `claude_desktop_config.json`:
 
@@ -78,14 +41,58 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "nsight-readonly": {
       "command": "node",
-      "args": ["path/to/nsight-mcp-server/dist/readonly-server.js"],
+      "args": ["/path/to/nsight-mcp-server/dist/readonly-server.js"],
       "env": {
-        "NSIGHT_API_KEY": "your_key",
+        "NSIGHT_API_KEY": "your_api_key",
         "NSIGHT_SERVER_URL": "https://www.systemmonitor.us"
       }
     }
   }
 }
+```
+
+**Regional server URLs:**
+- North America: `https://www.systemmonitor.us`
+- Europe: `https://www.systemmonitor.eu`
+- Asia Pacific: `https://wwwasia.systemmonitor.us`
+
+---
+
+## Available Tools
+
+### Read-Only (Phase 1)
+
+| Tool | What it does |
+|---|---|
+| `list_clients` | List all managed clients with IDs ✅ |
+| `list_failing_checks` | All failing monitors, filterable by client ✅ |
+| `list_sites` | Sites for a client _(coming soon)_ |
+| `list_devices` | Servers and workstations _(coming soon)_ |
+| `list_patches` | Patch compliance per device _(coming soon)_ |
+| `list_av_threats` | Active AV threats _(coming soon)_ |
+| `list_backup_sessions` | Backup job history _(coming soon)_ |
+
+### Production (Phase 2)
+
+Includes all Read-Only tools plus: `clear_check`, `approve_patch`, `run_task`, `start_av_scan`, `add_client`, and more.
+
+> The Production server requires explicit opt-in and a confirmation step before every write action.
+
+---
+
+## Project Structure
+
+```
+src/
+├── core/
+│   ├── client.ts          # N-sight API client — HTTP, XML→JSON, rate limiting
+│   ├── ratelimit.ts       # Token bucket rate limiter (60 calls/min)
+│   └── audit.ts           # Audit logger (Production server only)
+├── tools/
+│   ├── readonly/          # Read-only tool implementations
+│   └── production/        # Write/action tools (Phase 2)
+├── readonly-server.ts     # Read-Only MCP server entry point
+└── production-server.ts   # Production MCP server entry point (Phase 2)
 ```
 
 ---
@@ -94,54 +101,31 @@ Add to your `claude_desktop_config.json`:
 
 Built on the [N-sight Data Extraction API](https://developer.n-able.com/n-sight/docs/getting-started-with-the-n-sight-api).
 
-- **Auth:** API key per account (stored server-side — never exposed to AI clients)
-- **Rate limit:** 60 calls/minute — handled automatically with request queuing
-- **Response format:** N-sight returns XML; this server transforms all responses to JSON
-
----
-
-## Project Structure
-
-```
-nsight-mcp-server/
-├── src/
-│   ├── core/
-│   │   ├── client.ts          # N-sight API HTTP client
-│   │   ├── auth.ts            # API key management
-│   │   ├── transform.ts       # XML → JSON transformation
-│   │   ├── ratelimit.ts       # 60/min queue & throttle
-│   │   └── audit.ts           # Production audit logger
-│   ├── tools/
-│   │   ├── readonly/          # Read-only tool implementations
-│   │   └── production/        # Write/action tool implementations
-│   ├── readonly-server.ts     # Read-Only MCP server entry point
-│   └── production-server.ts   # Production MCP server entry point
-├── tests/
-├── docs/
-│   ├── tools-readonly.md
-│   ├── tools-production.md
-│   └── copilot-studio.md
-└── .env.example
-```
+- **Auth:** API key passed per request — stored server-side, never exposed to AI clients
+- **Rate limit:** 60 calls/minute — queued and throttled automatically
+- **Format:** N-sight returns XML; this server transforms all responses to clean JSON
 
 ---
 
 ## Roadmap
 
-- [ ] Phase 1 — Read-Only Server (N-sight)
-- [ ] Phase 2 — Production Server (N-sight)
-- [ ] Phase 3 — GA launch, MCP registry listing
-- [ ] Future — N-central MCP Server (separate project)
+- [x] Core infrastructure (API client, rate limiter, audit logger)
+- [x] `list_clients` — POC tool
+- [x] `list_failing_checks`
+- [ ] Phase 1 — remaining read-only tools (~15 tools)
+- [ ] Phase 2 — production write/action tools (~13 tools)
+- [ ] Phase 3 — GA launch, MCP registry listing, Copilot Studio guide
+- [ ] Future — N-central MCP server (separate project)
 
 ---
 
 ## Security
 
-The Production server includes:
-- Mandatory confirmation step before every write/action
-- Full audit trail (operator, device, action, timestamp)
-- Per-session write-action rate cap
-- API key scoped to client group (required, not optional)
+- API key stored server-side only — never sent to or seen by AI clients
+- Production server enforces a confirmation step before every write action
+- Full audit trail on all write calls: operator, device, action, timestamp
+- Per-session write-action cap to prevent runaway automation
+- API key scoping to a specific client group (required for Production)
 
 ---
 
