@@ -16,7 +16,7 @@ Lets AI assistants (Claude, Microsoft Copilot, etc.) interact with N-sight direc
 
 | Server | Description | Entry Point | Status |
 |---|---|---|---|
-| **Read-Only** | Safe read tools, broad rollout | `src/readonly-server.ts` | 🟡 In Progress |
+| **Read-Only** | Safe read tools, broad rollout | `src/readonly-server.ts` | 🟢 Complete |
 | **Production** | Read + write/action tools, opt-in | `src/production-server.ts` | ⬜ Phase 2 |
 
 Both share the same core (`src/core/`), auth layer, and XML→JSON transformation.
@@ -43,12 +43,12 @@ src/
 │   ├── ratelimit.ts     # Token bucket rate limiter (max 60 calls/min)
 │   └── audit.ts         # Audit logging (Production server)
 ├── tools/
-│   ├── readonly/        # Read-only tool implementations
-│   │   ├── list-clients.ts         ✅ built (POC)
-│   │   └── list-failing-checks.ts  ✅ built
+│   ├── readonly/        # Read-only tool implementations (all 21 built ✅)
 │   └── production/      # Write/action tool implementations (Phase 2)
 ├── readonly-server.ts   # MCP server entry point — read-only ✅ built
 └── production-server.ts # MCP server entry point — production (Phase 2)
+tests/                   # Unit tests for core (vitest) ✅ built
+device_details_reports/  # Generated JSON report examples for devices ✅ built
 ```
 
 ---
@@ -163,24 +163,21 @@ npm run typecheck             # TypeScript check without emit
 
 ### ✅ Done
 - Core infrastructure (`client.ts`, `ratelimit.ts`, `audit.ts`)
-- `list_clients` tool — POC tool
-- `list_failing_checks` tool
-- `readonly-server.ts` — MCP server entry point wiring both tools
+- All 21 Read-Only tools implemented and registered in `readonly-server.ts` (Phase 1)
+- `readonly-server.ts` — MCP server entry point wiring all 21 tools
+- Unit tests for core client and rate limiter under `tests/`
+- Device details dumps and indices under `device_details_reports/`
 
-### 🔲 Read-Only Tools Remaining (Phase 1)
-`list_sites`, `list_devices`, `list_checks`, `list_outages`, `get_check_output`,
-`list_performance_history`, `list_drive_history`, `list_patches`, `list_av_threats`,
-`list_av_scans`, `list_av_quarantine`, `list_hardware`, `list_software`,
-`get_device_assets`, `list_backup_sessions`, `list_backup_history`, `list_ad_users`
+### 🔲 Read-Only Tools Remaining (Phase 0)
+- None. Phase 1 is 100% complete and fully verified.
 
 ### 🔲 Production Tools (Phase 2)
 `clear_check`, `add_check_note`, `approve_patch`, `ignore_patch`, `retry_patch`,
 `start_av_scan`, `cancel_av_scan`, `release_quarantine_item`, `remove_quarantine_item`,
 `update_av_definitions`, `run_task`, `add_client`, `add_site`
 
-### 🔲 Still Needed
+### 🔲 Still Needed (Phase 2)
 - `production-server.ts` entry point
-- Claude Desktop config example
-- Copilot Studio config example
-- Developer quick-start guide
-- Unit tests for core + tools
+- Copilot Studio config guide
+- Developer quick-start guide additions for write operations
+- Unit tests for write operations

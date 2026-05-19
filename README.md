@@ -12,7 +12,7 @@ Two servers, shared codebase:
 
 | Server | What it does | Status |
 |---|---|---|
-| **Read-Only** | Safe data access — clients, devices, checks, patches, AV, backups | Phase 1 — In Progress |
+| **Read-Only** | Safe data access — clients, devices, checks, patches, AV, backups | Phase 1 — Complete ✅ |
 | **Production** | Everything in Read-Only + remediation actions | Phase 2 — Planned |
 
 ---
@@ -66,11 +66,24 @@ Add to your `claude_desktop_config.json`:
 |---|---|
 | `list_clients` | List all managed clients with IDs ✅ |
 | `list_failing_checks` | All failing monitors, filterable by client ✅ |
-| `list_sites` | Sites for a client _(coming soon)_ |
-| `list_devices` | Servers and workstations _(coming soon)_ |
-| `list_patches` | Patch compliance per device _(coming soon)_ |
-| `list_av_threats` | Active AV threats _(coming soon)_ |
-| `list_backup_sessions` | Backup job history _(coming soon)_ |
+| `list_sites` | Sites for a client ✅ |
+| `list_devices` | Servers and workstations ✅ |
+| `list_patches` | Patch compliance per device ✅ |
+| `list_av_threats` | Active AV threats ✅ |
+| `list_av_scans` | Managed Antivirus scan logs ✅ |
+| `list_av_quarantine` | Managed Antivirus quarantined files ✅ |
+| `list_backup_sessions` | Backup job history and session details ✅ |
+| `list_backup_history` | 90-day daily backup history ✅ |
+| `list_checks` | Active monitoring checks configure per device ✅ |
+| `list_outages` | Open and closed device outages ✅ |
+| `get_check_output` | Detailed check logs and results ✅ |
+| `list_ad_users` | Synchronized Active Directory users ✅ |
+| `list_hardware` | System hardware profile telemetry ✅ |
+| `list_software` | Registry-installed application inventory ✅ |
+| `list_drive_history` | Drive size and free space history ✅ |
+| `list_performance_history` | Processor, RAM, bandwidth history ✅ |
+| `list_client_license_count` | Client software license allocations ✅ |
+| `list_device_asset_details` | Unified device hardware/software specifications ✅ |
 
 ### Production (Phase 2)
 
@@ -112,7 +125,7 @@ Built on the [N-sight Data Extraction API](https://developer.n-able.com/n-sight/
 - [x] Core infrastructure (API client, rate limiter, audit logger)
 - [x] `list_clients` — POC tool
 - [x] `list_failing_checks`
-- [ ] Phase 1 — remaining read-only tools (~15 tools)
+- [x] Phase 1 — remaining read-only (all 21 tools) ✅ Complete
 - [ ] Phase 2 — production write/action tools (~13 tools)
 - [ ] Phase 3 — GA launch, MCP registry listing, Copilot Studio guide
 - [ ] Future — N-central MCP server (separate project)
