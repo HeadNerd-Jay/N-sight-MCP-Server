@@ -30,14 +30,24 @@ export async function listPerformanceHistory(
   const result = await client.call({
     service: "list_performance_history",
     deviceid: args.deviceid,
-  });
+  }) as any;
 
-  return JSON.stringify(
-    {
-      device_id: args.deviceid,
-      data: result,
-    },
-    null,
-    2
-  );
+  // Response shape: result.history (array or single) each with date, time, cpu, memory, bandwidth fields
+  const raw = result?.history;
+  const entries: any[] = Array.isArray(raw) ? raw : raw ? [raw] : [];
+
+  if (entries.length === 0) {
+    return JSON.stringify({ device_id: args.deviceid, total_entries: 0, history: [] }, null, 2);
+  }
+
+  const history = entries.map((h) => ({
+    date: h.date ?? null,
+    time: h.time ?? null,
+    cpu_usage_pct: h.cpu != null ? Number(h.cpu) : null,
+    memory_usage_pct: h.memory != null ? Number(h.memory) : null,
+    network_in_kbps: h.bandwidth_in != null ? Number(h.bandwidth_in) : null,
+    network_out_kbps: h.bandwidth_out != null ? Number(h.bandwidth_out) : null,
+  }));
+
+  return JSON.stringify({ device_id: args.deviceid, total_entries: history.length, history }, null, 2);
 }

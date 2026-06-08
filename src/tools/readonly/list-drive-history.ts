@@ -46,18 +46,38 @@ export async function listDriveHistory(
     params.since = args.since;
   }
 
-  const result = await client.call(params);
+  const result = await client.call(params) as any;
 
-  // Return the raw/formatted output representing drive history
-  // Since drive history responses can be nested (e.g., drives/drive/history), we return a representation of the result
+  // Response shape: result.drive (array or single), each with name, history entries (date, total, free)
+  const rawDrives = result?.drive;
+  const drives: any[] = Array.isArray(rawDrives) ? rawDrives : rawDrives ? [rawDrives] : [];
+
+  if (drives.length === 0) {
+    return JSON.stringify(
+      { device_id: args.deviceid, interval: args.interval, since: args.since ?? null, total_drives: 0, drives: [] },
+      null, 2
+    );
+  }
+
+  const formatted = drives.map((d) => {
+    const rawHistory = d?.history;
+    const entries: any[] = Array.isArray(rawHistory) ? rawHistory : rawHistory ? [rawHistory] : [];
+    return {
+      drive_name: d.name ?? null,
+      total_entries: entries.length,
+      history: entries.map((h) => ({
+        date: h.date ?? null,
+        total_mb: h.total != null ? Number(h.total) : null,
+        free_mb: h.free != null ? Number(h.free) : null,
+        used_pct: h.total && h.free
+          ? Math.round(((Number(h.total) - Number(h.free)) / Number(h.total)) * 100)
+          : null,
+      })),
+    };
+  });
+
   return JSON.stringify(
-    {
-      device_id: args.deviceid,
-      interval: args.interval,
-      since: args.since ?? null,
-      data: result,
-    },
-    null,
-    2
+    { device_id: args.deviceid, interval: args.interval, since: args.since ?? null, total_drives: formatted.length, drives: formatted },
+    null, 2
   );
 }

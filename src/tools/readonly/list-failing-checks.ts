@@ -68,6 +68,6 @@ export async function listFailingChecks(
     }
   }
 
-  if (failures.length === 0) return "No failing checks found.";
+  if (failures.length === 0) return JSON.stringify({ total_failures: 0, failures: [] }, null, 2);
   return JSON.stringify({ total_failures: failures.length, failures }, null, 2);
 }

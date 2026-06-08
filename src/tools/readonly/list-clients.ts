@@ -41,7 +41,7 @@ export async function listClients(
   const clients: any[] = Array.isArray(raw) ? raw : raw ? [raw] : [];
 
   if (clients.length === 0) {
-    return "No clients found in this N-sight account.";
+    return JSON.stringify({ total_clients: 0, clients: [] }, null, 2);
   }
 
   const formatted = clients.map((c) => ({

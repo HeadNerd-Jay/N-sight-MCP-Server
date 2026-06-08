@@ -33,10 +33,24 @@ export async function clearCheck(
   operatorId?: string
 ): Promise<string> {
   if (!args.confirm) {
-    return `Action not confirmed. Set confirm: true to clear check ID ${args.check_id} on device ID ${args.device_id}.`;
+    return JSON.stringify({
+      action: "clear_check",
+      status: "pending_confirmation",
+      check_id: args.check_id,
+      device_id: args.device_id,
+      message: "Action not confirmed. Set confirm: true to clear this check.",
+    }, null, 2);
   }
 
   await audit.log({ action: "clear_check", operator: operatorId ?? "unknown", params: args });
   await client.call({ service: "clear_a_check", checkid: args.check_id, deviceid: args.device_id });
-  return `Check ID ${args.check_id} on device ID ${args.device_id} cleared successfully.`;
+
+  return JSON.stringify({
+    action: "clear_check",
+    status: "success",
+    check_id: args.check_id,
+    device_id: args.device_id,
+    message: "Check cleared successfully.",
+    timestamp: new Date().toISOString(),
+  }, null, 2);
 }
