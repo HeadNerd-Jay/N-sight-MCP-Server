@@ -103,7 +103,7 @@ const tools = [
 // ---------------------------------------------------------------------------
 const server = new Server(
   { name: "nsight-readonly", version: "0.1.0" },
-  { capabilities: { tools: {} } }
+  { capabilities: { tools: {}, logging: {} } }
 );
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
