@@ -9,6 +9,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 import { NsightClient } from "../../core/client.js";
 import { AuditLogger } from "../../core/audit.js";
+import { McpContext } from "../../core/mcp-context.js";
 
 export const releaseQuarantineItemTool: Tool = {
   name: "release_quarantine_item",
@@ -30,9 +31,11 @@ export async function releaseQuarantineItem(
   client: NsightClient,
   audit: AuditLogger,
   args: { device_id: number; quarantine_id: number; confirm: boolean },
+  ctx?: McpContext,
   operatorId?: string
 ): Promise<string> {
   if (!args.confirm) {
+    await ctx?.log("info", `release_quarantine_item: confirmation required — quarantine ID ${args.quarantine_id} not released.`);
     return JSON.stringify({
       action: "release_quarantine_item",
       status: "pending_confirmation",
@@ -42,12 +45,20 @@ export async function releaseQuarantineItem(
     }, null, 2);
   }
 
+  await ctx?.log("info", `release_quarantine_item: writing audit log for quarantine ID ${args.quarantine_id}...`);
+  await ctx?.progress(1, 3);
   await audit.log({ action: "release_quarantine_item", operator: operatorId ?? "unknown", params: args });
+
+  await ctx?.log("info", `release_quarantine_item: calling N-sight API to restore file...`);
+  await ctx?.progress(2, 3);
   await client.call({
     service: "release_managed_antivirus_quarantine_item",
     deviceid: args.device_id,
     quarantineid: args.quarantine_id,
   });
+
+  await ctx?.progress(3, 3);
+  await ctx?.log("info", `release_quarantine_item: quarantine ID ${args.quarantine_id} restored successfully.`);
 
   return JSON.stringify({
     action: "release_quarantine_item",

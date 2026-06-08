@@ -9,6 +9,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 import { NsightClient } from "../../core/client.js";
 import { AuditLogger } from "../../core/audit.js";
+import { McpContext } from "../../core/mcp-context.js";
 
 export const addCheckNoteTool: Tool = {
   name: "add_check_note",
@@ -30,9 +31,11 @@ export async function addCheckNote(
   client: NsightClient,
   audit: AuditLogger,
   args: { check_id: number; note: string; confirm: boolean },
+  ctx?: McpContext,
   operatorId?: string
 ): Promise<string> {
   if (!args.confirm) {
+    await ctx?.log("info", `add_check_note: confirmation required — check ID ${args.check_id} not updated.`);
     return JSON.stringify({
       action: "add_check_note",
       status: "pending_confirmation",
@@ -42,8 +45,16 @@ export async function addCheckNote(
     }, null, 2);
   }
 
+  await ctx?.log("info", `add_check_note: writing audit log for check ID ${args.check_id}...`);
+  await ctx?.progress(1, 3);
   await audit.log({ action: "add_check_note", operator: operatorId ?? "unknown", params: args });
+
+  await ctx?.log("info", `add_check_note: calling N-sight API...`);
+  await ctx?.progress(2, 3);
   await client.call({ service: "add_check_note", checkid: args.check_id, note: args.note });
+
+  await ctx?.progress(3, 3);
+  await ctx?.log("info", `add_check_note: note added to check ID ${args.check_id}.`);
 
   return JSON.stringify({
     action: "add_check_note",

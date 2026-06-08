@@ -9,6 +9,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 import { NsightClient } from "../../core/client.js";
 import { AuditLogger } from "../../core/audit.js";
+import { McpContext } from "../../core/mcp-context.js";
 
 export const updateAVDefinitionsTool: Tool = {
   name: "update_av_definitions",
@@ -29,9 +30,11 @@ export async function updateAVDefinitions(
   client: NsightClient,
   audit: AuditLogger,
   args: { device_id: number; confirm: boolean },
+  ctx?: McpContext,
   operatorId?: string
 ): Promise<string> {
   if (!args.confirm) {
+    await ctx?.log("info", `update_av_definitions: confirmation required — device ID ${args.device_id} not updated.`);
     return JSON.stringify({
       action: "update_av_definitions",
       status: "pending_confirmation",
@@ -40,8 +43,16 @@ export async function updateAVDefinitions(
     }, null, 2);
   }
 
+  await ctx?.log("info", `update_av_definitions: writing audit log for device ID ${args.device_id}...`);
+  await ctx?.progress(1, 3);
   await audit.log({ action: "update_av_definitions", operator: operatorId ?? "unknown", params: args });
+
+  await ctx?.log("info", `update_av_definitions: calling N-sight API to push definition update...`);
+  await ctx?.progress(2, 3);
   await client.call({ service: "update_managed_antivirus_definitions", deviceid: args.device_id });
+
+  await ctx?.progress(3, 3);
+  await ctx?.log("info", `update_av_definitions: definition update triggered on device ID ${args.device_id}.`);
 
   return JSON.stringify({
     action: "update_av_definitions",

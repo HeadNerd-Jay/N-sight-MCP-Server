@@ -9,6 +9,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 import { NsightClient } from "../../core/client.js";
 import { AuditLogger } from "../../core/audit.js";
+import { McpContext } from "../../core/mcp-context.js";
 
 export const addClientTool: Tool = {
   name: "add_client",
@@ -29,9 +30,11 @@ export async function addClient(
   client: NsightClient,
   audit: AuditLogger,
   args: { name: string; confirm: boolean },
+  ctx?: McpContext,
   operatorId?: string
 ): Promise<string> {
   if (!args.confirm) {
+    await ctx?.log("info", `add_client: confirmation required — client "${args.name}" not created.`);
     return JSON.stringify({
       action: "add_client",
       status: "pending_confirmation",
@@ -40,9 +43,17 @@ export async function addClient(
     }, null, 2);
   }
 
+  await ctx?.log("info", `add_client: writing audit log for new client "${args.name}"...`);
+  await ctx?.progress(1, 3);
   await audit.log({ action: "add_client", operator: operatorId ?? "unknown", params: args });
+
+  await ctx?.log("info", `add_client: calling N-sight API to create client "${args.name}"...`);
+  await ctx?.progress(2, 3);
   const result = await client.call({ service: "add_client", name: args.name }) as any;
   const newClientId = result?.clientid ?? result?.client?.clientid ?? null;
+
+  await ctx?.progress(3, 3);
+  await ctx?.log("info", `add_client: client "${args.name}" created${newClientId ? ` with ID ${newClientId}` : ""}.`);
 
   return JSON.stringify({
     action: "add_client",

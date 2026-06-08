@@ -9,6 +9,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 import { NsightClient } from "../../core/client.js";
 import { AuditLogger } from "../../core/audit.js";
+import { McpContext } from "../../core/mcp-context.js";
 
 export const startAVScanTool: Tool = {
   name: "start_av_scan",
@@ -34,9 +35,11 @@ export async function startAVScan(
   client: NsightClient,
   audit: AuditLogger,
   args: { device_id: number; scan_type: "QUICK" | "FULL"; confirm: boolean },
+  ctx?: McpContext,
   operatorId?: string
 ): Promise<string> {
   if (!args.confirm) {
+    await ctx?.log("info", `start_av_scan: confirmation required — ${args.scan_type} scan on device ID ${args.device_id} not started.`);
     return JSON.stringify({
       action: "start_av_scan",
       status: "pending_confirmation",
@@ -46,8 +49,16 @@ export async function startAVScan(
     }, null, 2);
   }
 
+  await ctx?.log("info", `start_av_scan: writing audit log for ${args.scan_type} scan on device ID ${args.device_id}...`);
+  await ctx?.progress(1, 3);
   await audit.log({ action: "start_av_scan", operator: operatorId ?? "unknown", params: args });
+
+  await ctx?.log("info", `start_av_scan: calling N-sight API to trigger ${args.scan_type} scan...`);
+  await ctx?.progress(2, 3);
   await client.call({ service: "start_managed_antivirus_scan", deviceid: args.device_id, scantype: args.scan_type });
+
+  await ctx?.progress(3, 3);
+  await ctx?.log("info", `start_av_scan: ${args.scan_type} scan started on device ID ${args.device_id}.`);
 
   return JSON.stringify({
     action: "start_av_scan",

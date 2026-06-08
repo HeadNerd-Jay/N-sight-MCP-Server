@@ -21,6 +21,7 @@ import {
 import dotenv from "dotenv";
 
 import { NsightClient } from "./core/client.js";
+import { McpContext } from "./core/mcp-context.js";
 import { listClientsTool, listClients } from "./tools/readonly/list-clients.js";
 import { listFailingChecksTool, listFailingChecks } from "./tools/readonly/list-failing-checks.js";
 import { listSitesTool, listSites } from "./tools/readonly/list-sites.js";
@@ -109,8 +110,12 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args = {} } = request.params;
+  const ctx = new McpContext(server, request.params._meta?.progressToken);
 
   try {
+    await ctx.log("info", `Tool called: ${name}`);
+    await ctx.progress(0, 100);
+
     let text: string;
 
     switch (name) {
@@ -223,9 +228,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         throw new Error(`Unknown tool: "${name}"`);
     }
 
+    await ctx.progress(100, 100);
+    await ctx.log("info", `Tool completed: ${name}`);
+
     return { content: [{ type: "text", text }] };
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
+    await ctx.log("error", `Tool failed: ${name} — ${message}`);
     return {
       content: [{ type: "text", text: `Error: ${message}` }],
       isError: true,

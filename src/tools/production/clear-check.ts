@@ -9,6 +9,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 import { NsightClient } from "../../core/client.js";
 import { AuditLogger } from "../../core/audit.js";
+import { McpContext } from "../../core/mcp-context.js";
 
 export const clearCheckTool: Tool = {
   name: "clear_check",
@@ -30,9 +31,11 @@ export async function clearCheck(
   client: NsightClient,
   audit: AuditLogger,
   args: { check_id: number; device_id: number; confirm: boolean },
+  ctx?: McpContext,
   operatorId?: string
 ): Promise<string> {
   if (!args.confirm) {
+    await ctx?.log("info", `clear_check: confirmation required — check ID ${args.check_id} not cleared.`);
     return JSON.stringify({
       action: "clear_check",
       status: "pending_confirmation",
@@ -42,8 +45,16 @@ export async function clearCheck(
     }, null, 2);
   }
 
+  await ctx?.log("info", `clear_check: writing audit log for check ID ${args.check_id}...`);
+  await ctx?.progress(1, 3);
   await audit.log({ action: "clear_check", operator: operatorId ?? "unknown", params: args });
+
+  await ctx?.log("info", `clear_check: calling N-sight API...`);
+  await ctx?.progress(2, 3);
   await client.call({ service: "clear_a_check", checkid: args.check_id, deviceid: args.device_id });
+
+  await ctx?.progress(3, 3);
+  await ctx?.log("info", `clear_check: check ID ${args.check_id} cleared successfully.`);
 
   return JSON.stringify({
     action: "clear_check",

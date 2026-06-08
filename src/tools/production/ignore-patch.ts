@@ -9,6 +9,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 import { NsightClient } from "../../core/client.js";
 import { AuditLogger } from "../../core/audit.js";
+import { McpContext } from "../../core/mcp-context.js";
 
 export const ignorePatchTool: Tool = {
   name: "ignore_patch",
@@ -30,9 +31,11 @@ export async function ignorePatch(
   client: NsightClient,
   audit: AuditLogger,
   args: { device_id: number; patch_id: number; confirm: boolean },
+  ctx?: McpContext,
   operatorId?: string
 ): Promise<string> {
   if (!args.confirm) {
+    await ctx?.log("info", `ignore_patch: confirmation required — patch ID ${args.patch_id} not ignored.`);
     return JSON.stringify({
       action: "ignore_patch",
       status: "pending_confirmation",
@@ -42,8 +45,16 @@ export async function ignorePatch(
     }, null, 2);
   }
 
+  await ctx?.log("info", `ignore_patch: writing audit log for patch ID ${args.patch_id} on device ID ${args.device_id}...`);
+  await ctx?.progress(1, 3);
   await audit.log({ action: "ignore_patch", operator: operatorId ?? "unknown", params: args });
+
+  await ctx?.log("info", `ignore_patch: calling N-sight API...`);
+  await ctx?.progress(2, 3);
   await client.call({ service: "ignore_patch", deviceid: args.device_id, patchid: args.patch_id });
+
+  await ctx?.progress(3, 3);
+  await ctx?.log("info", `ignore_patch: patch ID ${args.patch_id} marked as ignored.`);
 
   return JSON.stringify({
     action: "ignore_patch",

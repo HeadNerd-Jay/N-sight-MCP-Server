@@ -23,6 +23,7 @@ import dotenv from "dotenv";
 
 import { NsightClient } from "./core/client.js";
 import { AuditLogger } from "./core/audit.js";
+import { McpContext } from "./core/mcp-context.js";
 
 // Read-only tools
 import { listClientsTool, listClients } from "./tools/readonly/list-clients.js";
@@ -165,11 +166,16 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args = {} } = request.params;
+  const ctx = new McpContext(server, request.params._meta?.progressToken);
+
+  await ctx.log("info", `Tool called: ${name}`);
+  await ctx.progress(0, 100);
 
   // Block confirmed write calls once the session limit is reached.
   // Unconfirmed calls (confirm: false) don't execute anything so they don't count.
   if (WRITE_TOOLS.has(name) && (args as any).confirm === true) {
     if (writeCount >= MAX_WRITES) {
+      await ctx.log("warning", `Write limit reached (${writeCount}/${MAX_WRITES}) — ${name} blocked.`);
       return {
         content: [{
           type: "text",
@@ -185,6 +191,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       };
     }
     writeCount++;
+    await ctx.log("info", `Write ${writeCount}/${MAX_WRITES}: ${name}`);
   }
 
   try {
@@ -258,52 +265,56 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       // --- Production (write) tools ---
       case "clear_check":
-        text = await clearCheck(nsightClient, auditLogger, args as { check_id: number; device_id: number; confirm: boolean });
+        text = await clearCheck(nsightClient, auditLogger, args as { check_id: number; device_id: number; confirm: boolean }, ctx);
         break;
       case "add_check_note":
-        text = await addCheckNote(nsightClient, auditLogger, args as { check_id: number; note: string; confirm: boolean });
+        text = await addCheckNote(nsightClient, auditLogger, args as { check_id: number; note: string; confirm: boolean }, ctx);
         break;
       case "approve_patch":
-        text = await approvePatch(nsightClient, auditLogger, args as { device_id: number; patch_id: number; confirm: boolean });
+        text = await approvePatch(nsightClient, auditLogger, args as { device_id: number; patch_id: number; confirm: boolean }, ctx);
         break;
       case "ignore_patch":
-        text = await ignorePatch(nsightClient, auditLogger, args as { device_id: number; patch_id: number; confirm: boolean });
+        text = await ignorePatch(nsightClient, auditLogger, args as { device_id: number; patch_id: number; confirm: boolean }, ctx);
         break;
       case "retry_patch":
-        text = await retryPatch(nsightClient, auditLogger, args as { device_id: number; patch_id: number; confirm: boolean });
+        text = await retryPatch(nsightClient, auditLogger, args as { device_id: number; patch_id: number; confirm: boolean }, ctx);
         break;
       case "start_av_scan":
-        text = await startAVScan(nsightClient, auditLogger, args as { device_id: number; scan_type: "QUICK" | "FULL"; confirm: boolean });
+        text = await startAVScan(nsightClient, auditLogger, args as { device_id: number; scan_type: "QUICK" | "FULL"; confirm: boolean }, ctx);
         break;
       case "cancel_av_scan":
-        text = await cancelAVScan(nsightClient, auditLogger, args as { device_id: number; confirm: boolean });
+        text = await cancelAVScan(nsightClient, auditLogger, args as { device_id: number; confirm: boolean }, ctx);
         break;
       case "release_quarantine_item":
-        text = await releaseQuarantineItem(nsightClient, auditLogger, args as { device_id: number; quarantine_id: number; confirm: boolean });
+        text = await releaseQuarantineItem(nsightClient, auditLogger, args as { device_id: number; quarantine_id: number; confirm: boolean }, ctx);
         break;
       case "remove_quarantine_item":
-        text = await removeQuarantineItem(nsightClient, auditLogger, args as { device_id: number; quarantine_id: number; confirm: boolean });
+        text = await removeQuarantineItem(nsightClient, auditLogger, args as { device_id: number; quarantine_id: number; confirm: boolean }, ctx);
         break;
       case "update_av_definitions":
-        text = await updateAVDefinitions(nsightClient, auditLogger, args as { device_id: number; confirm: boolean });
+        text = await updateAVDefinitions(nsightClient, auditLogger, args as { device_id: number; confirm: boolean }, ctx);
         break;
       case "run_task":
-        text = await runTask(nsightClient, auditLogger, args as { device_id: number; task_id: number; confirm: boolean });
+        text = await runTask(nsightClient, auditLogger, args as { device_id: number; task_id: number; confirm: boolean }, ctx);
         break;
       case "add_client":
-        text = await addClient(nsightClient, auditLogger, args as { name: string; confirm: boolean });
+        text = await addClient(nsightClient, auditLogger, args as { name: string; confirm: boolean }, ctx);
         break;
       case "add_site":
-        text = await addSite(nsightClient, auditLogger, args as { client_id: number; name: string; confirm: boolean });
+        text = await addSite(nsightClient, auditLogger, args as { client_id: number; name: string; confirm: boolean }, ctx);
         break;
 
       default:
         throw new Error(`Unknown tool: "${name}"`);
     }
 
+    await ctx.progress(100, 100);
+    await ctx.log("info", `Tool completed: ${name}`);
+
     return { content: [{ type: "text", text }] };
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
+    await ctx.log("error", `Tool failed: ${name} — ${message}`);
     return {
       content: [{ type: "text", text: `Error: ${message}` }],
       isError: true,

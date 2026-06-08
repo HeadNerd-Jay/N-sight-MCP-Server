@@ -9,6 +9,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 import { NsightClient } from "../../core/client.js";
 import { AuditLogger } from "../../core/audit.js";
+import { McpContext } from "../../core/mcp-context.js";
 
 export const runTaskTool: Tool = {
   name: "run_task",
@@ -30,9 +31,11 @@ export async function runTask(
   client: NsightClient,
   audit: AuditLogger,
   args: { device_id: number; task_id: number; confirm: boolean },
+  ctx?: McpContext,
   operatorId?: string
 ): Promise<string> {
   if (!args.confirm) {
+    await ctx?.log("info", `run_task: confirmation required — task ID ${args.task_id} on device ID ${args.device_id} not triggered.`);
     return JSON.stringify({
       action: "run_task",
       status: "pending_confirmation",
@@ -42,8 +45,16 @@ export async function runTask(
     }, null, 2);
   }
 
+  await ctx?.log("info", `run_task: writing audit log for task ID ${args.task_id} on device ID ${args.device_id}...`);
+  await ctx?.progress(1, 3);
   await audit.log({ action: "run_task", operator: operatorId ?? "unknown", params: args });
+
+  await ctx?.log("info", `run_task: calling N-sight API to trigger task ID ${args.task_id}...`);
+  await ctx?.progress(2, 3);
   await client.call({ service: "run_task", deviceid: args.device_id, taskid: args.task_id });
+
+  await ctx?.progress(3, 3);
+  await ctx?.log("info", `run_task: task ID ${args.task_id} triggered on device ID ${args.device_id}.`);
 
   return JSON.stringify({
     action: "run_task",
