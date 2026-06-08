@@ -14,6 +14,8 @@ npm install -g nsight-mcp-server
 
 Then add it to your AI client config (see [Integration](#integration) below).
 
+> New to MCP servers? See the **[Usage Guide](USAGE_GUIDE.md)** for step-by-step setup instructions, example prompts, and troubleshooting — written for non-developers.
+
 ---
 
 ## Architecture
