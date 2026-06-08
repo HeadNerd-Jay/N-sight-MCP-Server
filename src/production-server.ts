@@ -95,6 +95,23 @@ const auditLogger = new AuditLogger(
 );
 
 // ---------------------------------------------------------------------------
+// Session write limit
+// ---------------------------------------------------------------------------
+const MAX_WRITES = process.env.NSIGHT_MAX_WRITES_PER_SESSION
+  ? parseInt(process.env.NSIGHT_MAX_WRITES_PER_SESSION, 10)
+  : 20;
+
+let writeCount = 0;
+
+const WRITE_TOOLS = new Set([
+  "clear_check", "add_check_note",
+  "approve_patch", "ignore_patch", "retry_patch",
+  "start_av_scan", "cancel_av_scan",
+  "release_quarantine_item", "remove_quarantine_item", "update_av_definitions",
+  "run_task", "add_client", "add_site",
+]);
+
+// ---------------------------------------------------------------------------
 // Register all tools (read-only + production)
 // ---------------------------------------------------------------------------
 const tools = [
@@ -148,6 +165,27 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args = {} } = request.params;
+
+  // Block confirmed write calls once the session limit is reached.
+  // Unconfirmed calls (confirm: false) don't execute anything so they don't count.
+  if (WRITE_TOOLS.has(name) && (args as any).confirm === true) {
+    if (writeCount >= MAX_WRITES) {
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            action: name,
+            status: "limit_reached",
+            writes_executed: writeCount,
+            limit: MAX_WRITES,
+            message: `Session write limit of ${MAX_WRITES} reached. Restart the server to reset.`,
+          }, null, 2),
+        }],
+        isError: true,
+      };
+    }
+    writeCount++;
+  }
 
   try {
     let text: string;
