@@ -20,6 +20,8 @@ import {
   CallToolRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import dotenv from "dotenv";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
 
 import { NsightClient } from "./core/client.js";
 import { AuditLogger } from "./core/audit.js";
@@ -68,7 +70,9 @@ import { runTaskTool, runTask } from "./tools/production/run-task.js";
 import { addClientTool, addClient } from "./tools/production/add-client.js";
 import { addSiteTool, addSite } from "./tools/production/add-site.js";
 
-dotenv.config();
+// Load .env from the project root relative to this file (dist/../.env)
+// This works regardless of the working directory Claude Desktop uses when launching.
+dotenv.config({ path: resolve(dirname(fileURLToPath(import.meta.url)), "..", ".env") });
 
 // ---------------------------------------------------------------------------
 // Validate required environment variables
