@@ -1,244 +1,439 @@
-# N-sight AI Connect
+# N-sight AI Connect — MCP Server
 
-Official MCP (Model Context Protocol) server for N-able N-sight RMM.
-
-Enables AI assistants (Claude, Microsoft Copilot, and any MCP-compatible client) to query and act on N-sight RMM on behalf of MSP technicians — without leaving their AI interface.
-
----
-
-## Quick Start
-
-```bash
-npm install -g nsight-mcp-server
-```
-
-Then add it to your AI client config (see [Integration](#integration) below).
-
-> New to MCP servers? See the **[Usage Guide](USAGE_GUIDE.md)** for step-by-step setup instructions, example prompts, and troubleshooting — written for non-developers.
+**Audience:** IT Professionals and MSPs
+**Assumes:** Familiarity with MCP concepts. You know what a Model Context Protocol server is and roughly how it connects to an AI client.
 
 ---
 
-## Architecture
+## What This Is
 
-Two servers, one package:
+N-sight AI Connect is an MCP server that gives your AI assistant direct, read-only (or read/write) access to your N-sight RMM environment. Instead of copying data out of dashboards and pasting it into a chat window, you ask questions in plain language and the AI queries your live N-sight data on your behalf.
 
-| Server | Command | What it does |
-|---|---|---|
-| **Read-Only** | `nsight-mcp-readonly` | Safe data access — clients, devices, checks, patches, AV, backups. No writes. |
-| **Production** | `nsight-mcp-production` | Everything in Read-Only plus remediation actions (clear checks, approve patches, run tasks, and more). |
+Examples of what you can ask:
 
-Both servers share the same API client, rate limiter, and XML-to-JSON transformation layer.
-
----
-
-## Prerequisites
-
-- Node.js 18 or later
-- N-sight API key (Settings > General Settings > API Keys)
-- Your regional server URL (see [Regional URLs](#regional-urls))
+- "Which of my clients have failing checks right now?"
+- "Show me the hardware details for CSP-0009 at Company 1."
+- "What software is installed on AM4-MacOSx-Sequoia at Kelltic Cider?"
+- "Give me an environment summary for Kelltic Cider Company."
 
 ---
 
-## Integration
+## Documentation
 
-### Claude Desktop
-
-Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows):
-
-**Read-Only server:**
-```json
-{
-  "mcpServers": {
-    "nsight": {
-      "command": "npx",
-      "args": ["nsight-mcp-server", "readonly"],
-      "env": {
-        "NSIGHT_API_KEY": "your_api_key",
-        "NSIGHT_SERVER_URL": "https://www.systemmonitor.us"
-      }
-    }
-  }
-}
-```
-
-**Production server:**
-```json
-{
-  "mcpServers": {
-    "nsight": {
-      "command": "npx",
-      "args": ["nsight-mcp-server", "production"],
-      "env": {
-        "NSIGHT_API_KEY": "your_api_key",
-        "NSIGHT_SERVER_URL": "https://www.systemmonitor.us",
-        "NSIGHT_MAX_WRITES_PER_SESSION": "20",
-        "NSIGHT_AUDIT_LOG_PATH": "./logs/audit.log"
-      }
-    }
-  }
-}
-```
-
-### Microsoft Copilot Studio
-
-In your Copilot Studio agent, add a new MCP connection:
-
-- **Server type:** stdio
-- **Command:** `npx nsight-mcp-readonly` (or `nsight-mcp-production`)
-- **Environment variables:** `NSIGHT_API_KEY`, `NSIGHT_SERVER_URL`
-
-### Any MCP-compatible client
-
-Both servers speak the standard MCP stdio transport. Point your client at:
-
-```
-npx nsight-mcp-readonly
-```
-or
-```
-npx nsight-mcp-production
-```
+| Guide | What it covers |
+|---|---|
+| This file | Installation, client setup, tool reference, testing, troubleshooting |
+| [CLIENT-SETUP-GUIDE.md](CLIENT-SETUP-GUIDE.md) | Detailed setup for Claude Desktop, ChatGPT Desktop, and OpenAI Agents SDK |
+| [COPILOT-STUDIO-GUIDE.md](COPILOT-STUDIO-GUIDE.md) | Connecting to Microsoft Copilot Studio via HTTP transport (v2) |
+| [TOOL-REFERENCE.md](TOOL-REFERENCE.md) | Complete tool reference with all 36 tools, keywords, and triggers |
 
 ---
 
-## Regional URLs
+## Before You Start
+
+You need three things:
+
+1. **An N-sight account** with API access enabled.
+2. **Your N-sight API key** — generate this from your N-sight portal under Settings > API.
+3. **Your N-sight server URL** — confirm yours in your N-sight portal.
+
+**Server URL by region:**
 
 | Region | URL |
 |---|---|
 | North America | `https://www.systemmonitor.us` |
+| Americas (alternate) | `https://www.am.remote.management` |
 | Europe | `https://www.systemmonitor.eu` |
 | Asia Pacific | `https://wwwasia.systemmonitor.us` |
+| UK | `https://www.systemmonitor.co.uk` |
 
----
+You also need **Node.js 18 or later** installed. Check with:
 
-## Configuration
-
-All configuration is via environment variables. Copy `.env.example` to `.env` for local development.
-
-| Variable | Required | Default | Description |
-|---|---|---|---|
-| `NSIGHT_API_KEY` | Yes | | N-sight API key |
-| `NSIGHT_SERVER_URL` | Yes | | Regional server URL (see above) |
-| `NSIGHT_CLIENT_ID` | No | | Restrict to a specific client group |
-| `NSIGHT_RATE_LIMIT_PER_MIN` | No | `60` | API call rate limit (max 60) |
-| `NSIGHT_MAX_WRITES_PER_SESSION` | Production only | `20` | Max write actions before server requires restart |
-| `NSIGHT_AUDIT_LOG_ENABLED` | Production only | `true` | Enable append-only audit log |
-| `NSIGHT_AUDIT_LOG_PATH` | Production only | `./logs/audit.log` | Path for audit log file |
-
----
-
-## Available Tools
-
-### Read-Only (21 tools)
-
-| Tool | Description |
-|---|---|
-| `list_clients` | List all managed clients with IDs |
-| `list_sites` | Sites for a client |
-| `list_devices` | Servers and workstations at a site |
-| `list_failing_checks` | All failing monitors, filterable by client |
-| `list_checks` | All monitoring checks configured on a device |
-| `list_outages` | Open and closed device outages |
-| `get_check_output` | Detailed check logs and results |
-| `list_patches` | Patch compliance per device |
-| `list_av_threats` | Active AV threats |
-| `list_av_scans` | Managed Antivirus scan history |
-| `list_av_quarantine` | Managed Antivirus quarantined files |
-| `list_backup_sessions` | Backup job history and session details |
-| `list_backup_history` | 90-day daily backup history |
-| `list_ad_users` | Synchronized Active Directory users |
-| `list_hardware` | System hardware profile telemetry |
-| `list_software` | Registry-installed application inventory |
-| `list_drive_history` | Drive size and free space history |
-| `list_performance_history` | Processor, RAM, and bandwidth history |
-| `list_client_license_count` | Client software license allocations |
-| `list_device_asset_details` | Unified device hardware/software specifications |
-| `get_device_assets` | Asset records for a specific device |
-
-### Production (13 additional write tools)
-
-All write tools require `confirm: true` before executing. Unconfirmed calls return a preview of the action without executing it.
-
-| Tool | Description |
-|---|---|
-| `clear_check` | Clear (acknowledge) a failing monitor check |
-| `add_check_note` | Add a note to a monitor check |
-| `approve_patch` | Approve a pending patch for installation |
-| `ignore_patch` | Mark a patch as ignored on a device |
-| `retry_patch` | Retry a failed patch installation |
-| `start_av_scan` | Trigger an on-demand AV scan (QUICK or FULL) |
-| `cancel_av_scan` | Cancel an in-progress AV scan |
-| `update_av_definitions` | Force an immediate AV definition update |
-| `release_quarantine_item` | Restore a quarantined file to its original location |
-| `remove_quarantine_item` | Permanently delete a quarantined file |
-| `run_task` | Run a scheduled automation task immediately |
-| `add_client` | Create a new managed client |
-| `add_site` | Create a new site under an existing client |
-
----
-
-## Production Server: Safety Controls
-
-The Production server has three layers of protection against unintended writes:
-
-**1. Confirmation gate**
-Every write tool requires `confirm: true` in the tool call. Without it, the tool returns a preview of what would happen and does nothing.
-
-**2. Audit log**
-Every confirmed write is appended to an audit log before it executes. The log records the action, parameters, operator identity, and timestamp. If the API call fails after the audit entry is written, the entry remains — giving you a full record of intent.
-
-**3. Session write cap**
-`NSIGHT_MAX_WRITES_PER_SESSION` (default: 20) limits the total number of confirmed write actions per server instance. Once reached, all further writes are blocked until the server is restarted. Prevents runaway automation.
-
----
-
-## Project Structure
-
+```powershell
+node --version
 ```
-src/
-├── core/
-│   ├── client.ts          # N-sight API client (HTTP, XML-to-JSON, rate limiting)
-│   ├── ratelimit.ts       # Token bucket rate limiter
-│   ├── audit.ts           # Append-only audit logger
-│   └── mcp-context.ts     # Per-request logging and progress notifications
-├── tools/
-│   ├── readonly/          # 21 read-only tool implementations
-│   └── production/        # 13 write tool implementations
-├── readonly-server.ts     # Read-Only MCP server entry point
-└── production-server.ts   # Production MCP server entry point
+
+If you don't have it:
+
+```powershell
+# Windows (via Chocolatey)
+choco install nodejs
+
+# Or download directly from nodejs.org
 ```
 
 ---
 
-## Development
+## Installation
 
-```bash
+### Step 1 — Get the server files
+
+Clone the repo or download the release package:
+
+```powershell
 git clone https://github.com/HeadNerd-Jay/N-sight-MCP-Server.git
-cd nsight-mcp-server
-npm install
-cp .env.example .env       # fill in NSIGHT_API_KEY and NSIGHT_SERVER_URL
+cd N-sight-MCP-Server
+```
 
-npm run dev:readonly       # run read-only server (no compile step)
-npm run dev:production     # run production server
-npm run test               # run test suite (96 tests)
-npm run typecheck          # TypeScript check without emit
-npm run build              # compile to dist/
+### Step 2 — Install dependencies and build
+
+```powershell
+npm install
+npm run build
+```
+
+This compiles the TypeScript source into `dist/`. You should see no errors.
+
+### Step 3 — Create your credentials file
+
+In the project root, create a file named `.env`:
+
+```
+NSIGHT_API_KEY=your_api_key_here
+NSIGHT_SERVER_URL=https://www.systemmonitor.us
+```
+
+Replace both values with your actual credentials. This file is gitignored and will never be committed to version control.
+
+**Do not put your API key anywhere else.** Not in config files, not in environment variables passed through your AI client config, not in the command line. The `.env` file is the only place it belongs.
+
+---
+
+## Connecting to Your AI Client
+
+### Claude Desktop (Windows)
+
+Config file location:
+
+```
+C:\Users\<your-username>\AppData\Roaming\Claude\claude_desktop_config.json
+```
+
+Open that file (create it if it doesn't exist) and add the following inside the `mcpServers` object:
+
+```json
+{
+  "mcpServers": {
+    "nsight": {
+      "command": "node",
+      "args": ["C:\\path\\to\\N-sight-MCP-Server\\dist\\readonly-server.js"],
+      "env": {}
+    }
+  }
+}
+```
+
+Replace the path with the actual full path to your `dist\readonly-server.js`. Use double backslashes on Windows.
+
+To also enable write tools (clearing checks, adding notes, running tasks):
+
+```json
+{
+  "mcpServers": {
+    "nsight": {
+      "command": "node",
+      "args": ["C:\\path\\to\\N-sight-MCP-Server\\dist\\readonly-server.js"],
+      "env": {}
+    },
+    "nsight-production": {
+      "command": "node",
+      "args": ["C:\\path\\to\\N-sight-MCP-Server\\dist\\production-server.js"],
+      "env": {}
+    }
+  }
+}
+```
+
+Restart Claude Desktop after saving. The N-sight tools will appear automatically in the next session.
+
+### Claude Desktop (macOS)
+
+Config file location:
+
+```
+~/Library/Application Support/Claude/claude_desktop_config.json
+```
+
+Same JSON structure as above. Use forward slashes in the path:
+
+```json
+{
+  "mcpServers": {
+    "nsight": {
+      "command": "node",
+      "args": ["/Users/your-username/N-sight-MCP-Server/dist/readonly-server.js"],
+      "env": {}
+    }
+  }
+}
+```
+
+### ChatGPT Desktop (Windows and macOS)
+
+ChatGPT Desktop uses the same `mcpServers` JSON format. Config file locations:
+
+- **Windows:** `%APPDATA%\ChatGPT\claude_desktop_config.json`
+- **macOS:** `~/Library/Application Support/ChatGPT/claude_desktop_config.json`
+
+Use the same JSON block shown for Claude Desktop above.
+
+You also need to enable MCP in ChatGPT Desktop settings: go to **Settings > Advanced** and turn on **Enable MCP**.
+
+Note: MCP support in ChatGPT Desktop was introduced after Claude Desktop. If the option isn't visible, check that you're on the latest version.
+
+### OpenAI Agents SDK (Python)
+
+For developers building agents programmatically:
+
+```python
+from agents import Agent, Runner
+from agents.mcp import MCPServerStdio
+
+nsight_server = MCPServerStdio(
+    params={
+        "command": "node",
+        "args": ["/path/to/N-sight-MCP-Server/dist/readonly-server.js"],
+        "env": {}
+    }
+)
+
+async def main():
+    async with nsight_server as server:
+        agent = Agent(
+            name="N-sight Assistant",
+            instructions="You help IT teams query their N-sight RMM environment.",
+            mcp_servers=[server]
+        )
+        result = await Runner.run(agent, "List all my clients.")
+        print(result.final_output)
+```
+
+Credentials are loaded from the `.env` file automatically by the server on startup.
+
+### Future Clients
+
+Any MCP-compatible client that supports stdio transport can connect to this server using the same pattern:
+
+- **Command:** `node`
+- **Args:** full path to `dist/readonly-server.js` (or `production-server.js` for write access)
+- **Env:** empty — credentials come from `.env` in the project directory
+
+If a future client requires HTTP transport instead of stdio, see [COPILOT-STUDIO-GUIDE.md](COPILOT-STUDIO-GUIDE.md) for setup instructions.
+
+---
+
+## Available Tools — Read-Only Server
+
+The read-only server exposes 23 tools, organized by function. Use these for monitoring, reporting, and querying without risk of changes to your environment.
+
+### Environment and Summary
+
+| Tool | What it does |
+|---|---|
+| `get_environment_summary` | Health and inventory snapshot for a single customer or specific sites |
+| `list_all_sites` | All sites across all clients in one call |
+
+**Scope requirement:** `get_environment_summary` requires you to specify a customer name or one or more site names. It will not run without that context and will reject any request that spans multiple customers.
+
+### Clients and Sites
+
+| Tool | What it does |
+|---|---|
+| `list_clients` | All clients in your N-sight account |
+| `list_sites` | All sites for a specific client |
+
+### Devices
+
+| Tool | What it does |
+|---|---|
+| `list_devices` | Devices at a specific site (requires customer or site name) |
+| `get_device_assets` | Asset information for a single device |
+
+**Scope requirement:** `list_devices` requires at least a customer name or site name before it will run.
+
+### Checks and Monitoring
+
+| Tool | What it does |
+|---|---|
+| `list_checks` | Monitoring checks for a device |
+| `list_failing_checks` | All checks currently failing across the account |
+| `get_check_output` | Detailed output from a specific check |
+
+### Patch Management
+
+| Tool | What it does |
+|---|---|
+| `list_patches` | Patch status for a device |
+
+### Software and Hardware (Single Device Only)
+
+| Tool | What it does |
+|---|---|
+| `list_software` | Installed software on a device |
+| `list_hardware` | Hardware details for a device |
+| `list_device_asset_details` | Full asset record for a device |
+
+**Important:** These three tools are intentionally restricted to one device at a time. If you ask for software or hardware across all your devices, the AI will ask you to name a specific device instead of looping through all of them. This protects your N-sight API from being overwhelmed on large accounts.
+
+### Antivirus
+
+| Tool | What it does |
+|---|---|
+| `list_av_threats` | Recent AV threats on a device |
+| `list_av_scans` | AV scans run on a device |
+| `list_av_quarantine` | Items in AV quarantine on a device |
+
+### Backup
+
+| Tool | What it does |
+|---|---|
+| `list_backup_history` | Backup check status over the last 90 days |
+| `list_backup_sessions` | Individual backup session details |
+
+### Performance and History
+
+| Tool | What it does |
+|---|---|
+| `list_performance_history` | CPU, memory, and bandwidth metrics over time |
+| `list_drive_history` | Historical disk usage over time |
+| `list_outages` | Outages for a device (open or recently closed) |
+
+### Other
+
+| Tool | What it does |
+|---|---|
+| `list_ad_users` | Active Directory users at a site |
+| `list_client_license_count` | Software license counts by client |
+
+---
+
+## Available Tools — Production Server
+
+The production server includes all read-only tools plus write tools for taking action. Use with care — these tools make changes to your N-sight environment.
+
+### Additional Write Tools
+
+| Tool | What it does |
+|---|---|
+| `add_client` | Create a new client |
+| `add_site` | Create a new site under a client |
+| `clear_check` | Acknowledge and clear a failing check |
+| `add_check_note` | Add a note to a monitoring check |
+| `approve_patch` | Approve a pending patch for installation |
+| `ignore_patch` | Mark a patch as ignored |
+| `retry_patch` | Retry a failed patch installation |
+| `run_task` | Run a scheduled automation task on a device |
+| `start_av_scan` | Trigger an on-demand AV scan |
+| `cancel_av_scan` | Cancel an in-progress AV scan |
+| `update_av_definitions` | Force an AV definition update |
+| `release_quarantine_item` | Restore a quarantined file |
+| `remove_quarantine_item` | Permanently delete a quarantined file |
+
+---
+
+## Testing Your Connection
+
+The repo includes an interactive terminal client and an automated test suite.
+
+### Interactive terminal (see live logs and notifications)
+
+```powershell
+cd "C:\path\to\N-sight-MCP-Server"
+node mcp-terminal.mjs
+```
+
+You'll get a prompt:
+
+```
+nsight>
+```
+
+Common commands:
+
+| Command | Example |
+|---|---|
+| `clients` | `clients` |
+| `sites <clientid>` | `sites 129052` |
+| `devices <siteid>` | `devices 193393` |
+| `summary <customer name>` | `summary Kelltic Cider Company` |
+| `hardware <device_name> <assetid>` | `hardware CSP-0009 1771706` |
+| `software <device_name> <assetid>` | `software CSP-0009 1771706` |
+| `failing` | `failing` |
+| `tools` | `tools` |
+| `help` | `help` |
+
+This client shows MCP log and progress notifications in real time as the server executes each tool call — useful for confirming the server is working correctly.
+
+### Automated test suite
+
+```powershell
+node test-commands.mjs
+```
+
+Runs all 23 read-only tools against your live environment and reports pass/fail for each. Expect output like:
+
+```
+[1/23] tools ......................... PASS (23 tools loaded)
+[2/23] clients ....................... PASS (6 clients)
+...
+[23/23] call list_client_license_count  PASS
+All tests passed: 23/23
 ```
 
 ---
 
-## N-sight API
+## Guardrails and Rate Limiting
 
-Built on the [N-sight Data Extraction API](https://developer.n-able.com/n-sight/docs/getting-started-with-the-n-sight-api).
+The server includes built-in protections designed for MSPs managing large accounts.
 
-- **Auth:** API key passed per request, stored server-side and never exposed to AI clients
-- **Rate limit:** 60 calls/minute, queued and throttled automatically
-- **Format:** N-sight returns XML; this server transforms all responses to clean JSON
+**Single-device enforcement.** `list_software`, `list_hardware`, and `list_device_asset_details` use an in-memory session guard that blocks repeated calls within a 30-second window. If the AI starts looping through devices, the guard fires and tells it to stop and ask you for a specific device name.
+
+**Scope requirements.** `list_devices` and `get_environment_summary` require context (customer name or site name) before executing. An unscoped call is rejected with a clear error message returned to the AI, which will then prompt you for that context.
+
+**Single-customer enforcement.** `get_environment_summary` accepts multiple sites but only within a single customer. Any attempt to span multiple customers is rejected at runtime.
+
+**No list_all_devices.** This tool was intentionally removed. An account with thousands of devices would generate an enormous API call with no practical value for most queries. Use `list_devices` scoped to a site instead.
 
 ---
 
-## License
+## Keeping the Server Up to Date
 
-Copyright 2024 N-able Technologies
+When you pull new changes from the repo, always rebuild before restarting your AI client:
 
-Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
+```powershell
+cd "C:\path\to\N-sight-MCP-Server"
+git pull
+npm install
+npm run build
+```
+
+Then restart Claude Desktop (or your chosen client) to load the updated tools.
+
+---
+
+## Troubleshooting
+
+**The AI says it doesn't have any N-sight tools.**
+Check that your config file is valid JSON and the path to `readonly-server.js` is correct and uses double backslashes on Windows. Restart the AI client after any config change.
+
+**The AI asks me for a customer or site name even for basic queries.**
+That's expected behavior for scoped tools. Provide the name and it will proceed.
+
+**The AI refuses to list software across all my devices.**
+That's intentional. Name a specific device and it will run the query.
+
+**The server starts but returns no clients.**
+Verify your `NSIGHT_API_KEY` and `NSIGHT_SERVER_URL` in the `.env` file. Run `node mcp-terminal.mjs` and type `clients` to see the raw response.
+
+**Build errors after pulling an update.**
+Run `npm install` before `npm run build` to pick up any new dependencies.
+
+---
+
+## Security Notes
+
+Your API key lives only in the `.env` file in the project directory. It is gitignored and will not be committed if you fork or contribute to the repo. Never paste your API key into your AI client's config file or into a chat session.
+
+The read-only server cannot make changes to your N-sight environment. If you only need monitoring and reporting capabilities, use `readonly-server.js` exclusively.
+
+The production server has write access. Treat it the same way you would treat direct API access — be specific in your requests and confirm before asking it to take action on devices.
