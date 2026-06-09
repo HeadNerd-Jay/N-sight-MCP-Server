@@ -9,15 +9,22 @@
 
 import { spawn } from "child_process";
 import { createInterface } from "readline";
+import { config } from "dotenv";
+
+// Load .env from the project root (same directory as this script)
+config();
+
+if (!process.env.NSIGHT_API_KEY || !process.env.NSIGHT_SERVER_URL) {
+  console.error("Error: NSIGHT_API_KEY and NSIGHT_SERVER_URL must be set.");
+  console.error("Copy .env.example to .env and fill in your credentials.");
+  process.exit(1);
+}
 
 const SERVER_PATH = new URL("./dist/readonly-server.js", import.meta.url)
   .pathname.replace(/^\/([A-Z]:)/, "$1").replace(/%20/g, " ");
 
-const env = {
-  ...process.env,
-  NSIGHT_API_KEY:    "REDACTED_API_KEY",
-  NSIGHT_SERVER_URL: "https://www.am.remote.management",
-};
+// Inherit the full environment (includes values loaded from .env above)
+const env = { ...process.env };
 
 // ── ANSI colours ────────────────────────────────────────────────────────────
 const G = "\x1b[32m", R = "\x1b[31m", Y = "\x1b[33m",

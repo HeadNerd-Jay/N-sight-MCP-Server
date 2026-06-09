@@ -63,6 +63,18 @@ if (!NSIGHT_API_KEY || !NSIGHT_SERVER_URL) {
   process.exit(1);
 }
 
+// Validate NSIGHT_SERVER_URL is a well-formed HTTPS URL (SSRF guard)
+try {
+  const parsedUrl = new URL(NSIGHT_SERVER_URL);
+  if (parsedUrl.protocol !== "https:") {
+    console.error("Error: NSIGHT_SERVER_URL must use HTTPS (e.g. https://www.systemmonitor.us).");
+    process.exit(1);
+  }
+} catch {
+  console.error(`Error: NSIGHT_SERVER_URL is not a valid URL: "${NSIGHT_SERVER_URL}"`);
+  process.exit(1);
+}
+
 // ---------------------------------------------------------------------------
 // Initialise N-sight API client
 // ---------------------------------------------------------------------------

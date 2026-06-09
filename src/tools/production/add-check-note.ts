@@ -20,7 +20,7 @@ export const addCheckNoteTool: Tool = {
     type: "object",
     properties: {
       check_id: { type: "number", description: "The check ID to annotate. Obtain from list_checks or list_failing_checks." },
-      note: { type: "string", description: "The note text to add to the check." },
+      note: { type: "string", description: "The note text to add to the check.", maxLength: 1000 },
       confirm: { type: "boolean", description: "Must be true to execute." },
     },
     required: ["check_id", "note", "confirm"],
@@ -34,6 +34,16 @@ export async function addCheckNote(
   ctx?: McpContext,
   operatorId?: string
 ): Promise<string> {
+  // Guard: enforce note length limit before audit log or API call
+  if (args.note.length > 1000) {
+    return JSON.stringify({
+      action: "add_check_note",
+      status: "error",
+      check_id: args.check_id,
+      message: `Note exceeds 1000 character limit (${args.note.length} chars). Please shorten the note.`,
+    }, null, 2);
+  }
+
   if (!args.confirm) {
     await ctx?.log("info", `add_check_note: confirmation required — check ID ${args.check_id} not updated.`);
     return JSON.stringify({
