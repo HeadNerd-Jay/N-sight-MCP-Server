@@ -243,7 +243,6 @@ start-readonly.cmd             # Windows batch launcher (sets env vars, runs com
 `update_av_definitions`, `run_task`, `add_client`, `add_site`
 
 ### Still Needed
-- Copilot Studio integration guide
 - Developer quick-start guide additions for write operations
 - Unit tests for production write tools
 - End-to-end validation of production write tools against live environment
