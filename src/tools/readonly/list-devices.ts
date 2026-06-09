@@ -14,10 +14,20 @@ export const listDevicesTool: Tool = {
   description:
     "List all monitoring devices (servers and workstations) at a specific site. " +
     "Returns device ID, name, online status, IP address, OS details, and physical asset ID (assetid). " +
-    "Unified interface for both servers and workstations.",
+    "Unified interface for both servers and workstations. " +
+    "You MUST provide at least one of client_name or site_name before calling — use list_clients or list_sites first to resolve the context. " +
+    "Do not call this tool with only a siteid.",
   inputSchema: {
     type: "object",
     properties: {
+      client_name: {
+        type: "string",
+        description: "The name of the client this site belongs to (e.g. 'Kelltic Cider Company'). Resolve via list_clients. Required if site_name is not provided.",
+      },
+      site_name: {
+        type: "string",
+        description: "The name of the site to list devices for (e.g. 'Cork'). Resolve via list_sites. Required if client_name is not provided.",
+      },
       siteid: {
         type: "number",
         description: "The N-sight site ID (discoverable via list_sites).",
@@ -29,9 +39,13 @@ export const listDevicesTool: Tool = {
 
 export async function listDevices(
   client: NsightClient,
-  args: { siteid: number }
+  args: { client_name?: string; site_name?: string; siteid: number }
 ): Promise<string> {
-  const { siteid } = args;
+  const { client_name, site_name, siteid } = args;
+
+  if (!client_name && !site_name) {
+    return "Error: You must provide at least one of client_name or site_name before listing devices. Use list_clients or list_sites first to resolve the context.";
+  }
 
   // Query both list_servers and list_workstations in parallel
   const [serversResult, workstationsResult] = await Promise.all([
@@ -97,12 +111,18 @@ export async function listDevices(
     });
   }
 
+  const context = [client_name && `client "${client_name}"`, site_name && `site "${site_name}"`]
+    .filter(Boolean)
+    .join(", ");
+
   if (devices.length === 0) {
-    return `No servers or workstations found for site ID ${siteid}.`;
+    return `No servers or workstations found for ${context} (site ID ${siteid}).`;
   }
 
   return JSON.stringify(
     {
+      ...(client_name && { client_name }),
+      ...(site_name && { site_name }),
       total_devices: devices.length,
       devices,
     },

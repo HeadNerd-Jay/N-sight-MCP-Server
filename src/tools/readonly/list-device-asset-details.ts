@@ -4,32 +4,47 @@ import { NsightClient, NsightRequestParams } from "../../core/client.js";
 export const listDeviceAssetDetailsTool: Tool = {
   name: "list_device_asset_details",
   description:
-    "Lists complete hardware, software, network, chassis, role, RAM, custom assets, serial number, and product keys for a specific device.",
+    "Lists complete hardware, software, network, chassis, role, RAM, custom assets, serial number, and product keys for a single specific device. " +
+    "SINGLE DEVICE ONLY. Do NOT call this tool in a loop, batch, or sequence across multiple devices. " +
+    "If the user asks for asset details across more than one device or an entire customer, do NOT iterate — " +
+    "instead respond: 'I can only retrieve asset details for one device at a time. Which specific device would you like me to check?' " +
+    "Only call this tool when the user has explicitly named one specific device. " +
+    "You MUST provide device_name before calling — resolve it via list_devices first.",
   inputSchema: {
     type: "object",
     properties: {
+      device_name: {
+        type: "string",
+        description: "The name of the device (e.g. 'CSP-0009'). Must be resolved via list_devices before calling this tool.",
+      },
       deviceid: {
         type: "number",
-        description: "Required. The device ID to retrieve detailed asset specs for.",
+        description: "The device ID to retrieve detailed asset specs for (retrieved via list_devices).",
       },
     },
-    required: ["deviceid"],
+    required: ["device_name", "deviceid"],
   },
 };
 
 export async function listDeviceAssetDetails(
   client: NsightClient,
-  args: { deviceid: number }
+  args: { device_name: string; deviceid: number }
 ): Promise<string> {
+  const { device_name, deviceid } = args;
+
+  if (!device_name?.trim()) {
+    return "Error: device_name is required. Resolve the device name via list_devices before calling list_device_asset_details.";
+  }
+
   const params: NsightRequestParams = {
     service: "list_device_asset_details",
-    deviceid: args.deviceid,
+    deviceid,
   };
 
   const result = await client.call(params) as any;
-  
+
   if (!result) {
-    return `No asset details found for device ID ${args.deviceid}.`;
+    return `No asset details found for device "${device_name}" (device ID ${deviceid}).`;
   }
 
   const parseItem = (item: any) => {
@@ -75,7 +90,8 @@ export async function listDeviceAssetDetails(
   }
 
   const details = {
-    device_id: args.deviceid,
+    device_name,
+    device_id: deviceid,
     client: result.client ? String(result.client) : undefined,
     chassis_type: result.chassistype ? String(result.chassistype) : undefined,
     ip_address: result.ip ? String(result.ip) : undefined,
