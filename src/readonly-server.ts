@@ -23,6 +23,9 @@ import dotenv from "dotenv";
 import { NsightClient } from "./core/client.js";
 import { McpContext } from "./core/mcp-context.js";
 import { listClientsTool, listClients } from "./tools/readonly/list-clients.js";
+import { listAllDevicesTool, listAllDevices } from "./tools/readonly/list-all-devices.js";
+import { listAllSitesTool, listAllSites } from "./tools/readonly/list-all-sites.js";
+import { getEnvironmentSummaryTool, getEnvironmentSummary } from "./tools/readonly/get-environment-summary.js";
 import { listFailingChecksTool, listFailingChecks } from "./tools/readonly/list-failing-checks.js";
 import { listSitesTool, listSites } from "./tools/readonly/list-sites.js";
 import { listDevicesTool, listDevices } from "./tools/readonly/list-devices.js";
@@ -75,6 +78,11 @@ const nsightClient = new NsightClient({
 // Register all read-only tools
 // ---------------------------------------------------------------------------
 const tools = [
+  // Aggregate tools — single-call traversal across the full hierarchy
+  listAllDevicesTool,
+  listAllSitesTool,
+  getEnvironmentSummaryTool,
+  // Per-level tools
   listClientsTool,
   listFailingChecksTool,
   listSitesTool,
@@ -119,6 +127,15 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     let text: string;
 
     switch (name) {
+      case "list_all_devices":
+        text = await listAllDevices(nsightClient, args as { online_only?: boolean });
+        break;
+      case "list_all_sites":
+        text = await listAllSites(nsightClient, args as Record<string, never>);
+        break;
+      case "get_environment_summary":
+        text = await getEnvironmentSummary(nsightClient, args as Record<string, never>);
+        break;
       case "list_clients":
         text = await listClients(nsightClient, args as Record<string, never>);
         break;

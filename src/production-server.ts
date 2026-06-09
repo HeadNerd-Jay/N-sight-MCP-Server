@@ -25,6 +25,10 @@ import { NsightClient } from "./core/client.js";
 import { AuditLogger } from "./core/audit.js";
 import { McpContext } from "./core/mcp-context.js";
 
+// Aggregate tools
+import { listAllDevicesTool, listAllDevices } from "./tools/readonly/list-all-devices.js";
+import { listAllSitesTool, listAllSites } from "./tools/readonly/list-all-sites.js";
+import { getEnvironmentSummaryTool, getEnvironmentSummary } from "./tools/readonly/get-environment-summary.js";
 // Read-only tools
 import { listClientsTool, listClients } from "./tools/readonly/list-clients.js";
 import { listFailingChecksTool, listFailingChecks } from "./tools/readonly/list-failing-checks.js";
@@ -116,6 +120,10 @@ const WRITE_TOOLS = new Set([
 // Register all tools (read-only + production)
 // ---------------------------------------------------------------------------
 const tools = [
+  // Aggregate tools
+  listAllDevicesTool,
+  listAllSitesTool,
+  getEnvironmentSummaryTool,
   // Read-only
   listClientsTool,
   listFailingChecksTool,
@@ -198,6 +206,17 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     let text: string;
 
     switch (name) {
+      // --- Aggregate tools ---
+      case "list_all_devices":
+        text = await listAllDevices(nsightClient, args as { online_only?: boolean });
+        break;
+      case "list_all_sites":
+        text = await listAllSites(nsightClient, args as Record<string, never>);
+        break;
+      case "get_environment_summary":
+        text = await getEnvironmentSummary(nsightClient, args as Record<string, never>);
+        break;
+
       // --- Read-only tools ---
       case "list_clients":
         text = await listClients(nsightClient, args as Record<string, never>);
