@@ -22,8 +22,9 @@ import dotenv from "dotenv";
 
 import { NsightClient } from "./core/client.js";
 import { McpContext } from "./core/mcp-context.js";
+import { SessionGuard } from "./core/session-guard.js";
 import { listClientsTool, listClients } from "./tools/readonly/list-clients.js";
-import { listAllDevicesTool, listAllDevices } from "./tools/readonly/list-all-devices.js";
+// list-all-devices deprecated — too broad, no client/site scoping, risk of rate limit exhaustion on large accounts
 import { listAllSitesTool, listAllSites } from "./tools/readonly/list-all-sites.js";
 import { getEnvironmentSummaryTool, getEnvironmentSummary } from "./tools/readonly/get-environment-summary.js";
 import { listFailingChecksTool, listFailingChecks } from "./tools/readonly/list-failing-checks.js";
@@ -75,11 +76,16 @@ const nsightClient = new NsightClient({
 });
 
 // ---------------------------------------------------------------------------
+// Session guard — prevents list_software, list_hardware, list_device_asset_details
+// from being called in a loop/batch across multiple devices
+// ---------------------------------------------------------------------------
+const sessionGuard = new SessionGuard(15); // 15-second window
+
+// ---------------------------------------------------------------------------
 // Register all read-only tools
 // ---------------------------------------------------------------------------
 const tools = [
-  // Aggregate tools — single-call traversal across the full hierarchy
-  listAllDevicesTool,
+  // Aggregate tools
   listAllSitesTool,
   getEnvironmentSummaryTool,
   // Per-level tools
@@ -127,14 +133,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     let text: string;
 
     switch (name) {
-      case "list_all_devices":
-        text = await listAllDevices(nsightClient, args as { online_only?: boolean });
-        break;
       case "list_all_sites":
         text = await listAllSites(nsightClient, args as Record<string, never>);
         break;
       case "get_environment_summary":
-        text = await getEnvironmentSummary(nsightClient, args as Record<string, never>);
+        text = await getEnvironmentSummary(nsightClient, args as { client_name?: string; site_names?: string[] });
         break;
       case "list_clients":
         text = await listClients(nsightClient, args as Record<string, never>);
@@ -152,7 +155,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         break;
 
       case "list_devices":
-        text = await listDevices(nsightClient, args as { siteid: number });
+        text = await listDevices(nsightClient, args as { client_name?: string; site_name?: string; siteid: number });
         break;
 
       case "get_device_assets":
@@ -203,13 +206,21 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         );
         break;
 
-      case "list_hardware":
-        text = await listHardware(nsightClient, args as { assetid: number });
+      case "list_hardware": {
+        const guardError = sessionGuard.check("list_hardware", (args as any).device_name ?? "");
+        if (guardError) { text = guardError; break; }
+        try { text = await listHardware(nsightClient, args as { device_name: string; assetid: number }); }
+        finally { sessionGuard.complete("list_hardware"); }
         break;
+      }
 
-      case "list_software":
-        text = await listSoftware(nsightClient, args as { assetid: number });
+      case "list_software": {
+        const guardError = sessionGuard.check("list_software", (args as any).device_name ?? "");
+        if (guardError) { text = guardError; break; }
+        try { text = await listSoftware(nsightClient, args as { device_name: string; assetid: number }); }
+        finally { sessionGuard.complete("list_software"); }
         break;
+      }
 
       case "list_backup_sessions":
         text = await listBackupSessions(nsightClient, args as { deviceid: number });
@@ -237,9 +248,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         text = await listClientLicenseCount(nsightClient, args as { clientid: number });
         break;
 
-      case "list_device_asset_details":
-        text = await listDeviceAssetDetails(nsightClient, args as { deviceid: number });
+      case "list_device_asset_details": {
+        const guardError = sessionGuard.check("list_device_asset_details", (args as any).device_name ?? "");
+        if (guardError) { text = guardError; break; }
+        try { text = await listDeviceAssetDetails(nsightClient, args as { device_name: string; deviceid: number }); }
+        finally { sessionGuard.complete("list_device_asset_details"); }
         break;
+      }
 
       default:
         throw new Error(`Unknown tool: "${name}"`);

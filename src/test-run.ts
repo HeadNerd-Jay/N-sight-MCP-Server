@@ -94,7 +94,7 @@ async function runTests() {
 
     console.log(`\n=== Testing: listDeviceAssetDetails for Device ID: ${deviceId} ===`);
     try {
-      const assetDetailsJson = await listDeviceAssetDetails(nsightClient, { deviceid: deviceId });
+      const assetDetailsJson = await listDeviceAssetDetails(nsightClient, { device_name: "test-device", deviceid: deviceId });
       const data = JSON.parse(assetDetailsJson);
       console.log(`Found ${data.hardware_items_count} hardware items and ${data.software_items_count} software items.`);
       if (data.hardware) data.hardware = data.hardware.slice(0, 2);
