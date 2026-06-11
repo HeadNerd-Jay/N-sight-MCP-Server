@@ -11,6 +11,7 @@
     "dist",
     "README.md",
     "USAGE_GUIDE.md",
+    "PARTNER_GUIDE.md",
     "LICENSE",
     ".env.example"
   ],
